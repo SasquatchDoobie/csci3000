@@ -1,0 +1,9 @@
+Database:
+
+	users: (PK) username, fname, lname, signupdate
+
+	images: (PK) imageid, blob, title, date, (FK) username
+
+	gallery: (PK) galleryid, galleryname, creationdate
+
+	gallerycontent: (FK) galleryid, (FK) imageid
