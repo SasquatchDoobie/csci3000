@@ -19,3 +19,5 @@ dbConn.connect(function(e){
 	}
 
 })
+
+module.exports = {dbConn}
