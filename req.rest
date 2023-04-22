@@ -1,6 +1,6 @@
-POST /login HTTP/1.1
+POST http://localhost:3000/login
 Content-Type: application/json
-Content-Length: 20
 
-{"username": "test"}
-
+{
+  "username": "test"
+}
