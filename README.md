@@ -10,7 +10,7 @@ init.sql
 
 Run `docker-compose up -d` to launch the MariaDB server. Docker-compose will download and run the MariaDB version specified in `docker-compose.yml`.
 
-Connect to the database with the following information:
+Connect to the database (MySQL connector/MySQL CLI/Maria DB CLI...) with the following information:
 
 Host: localhost (or 127.0.0.1) | Port: 3306 | Username: root | Password: root
 
@@ -30,10 +30,10 @@ To remove the database server, search how to clear Docker volumes/images from yo
 
 ## STARTING THE SERVER
 
-Navigate in a terminal to the main directory (same directory as package.json) and run `npm start`. This will launch the main server and the authentication server for you. 
+Navigate in a terminal to the main directory (same directory as package.json) and run `npm start`. This should check for dependencies automatically.
 
 
 
 ## STOPPING THE SERVER
 
-From the terminal where you started the server, hit `Ctrl+C`.
+From the terminal where you started the server, hit `Ctrl+C`. Or, turn off your computer.
