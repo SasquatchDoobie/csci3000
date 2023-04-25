@@ -63,6 +63,17 @@ app.get('/', checkAuthentication, getData, (req, res) => {
 })
 
 //=====================
+// test page
+//=====================
+
+app.get('/test', (req, res) => {
+
+	res.sendFile(__dirname + '/views/rough_draft.ejs.html')
+
+})
+
+
+//=====================
 // LOGIN
 //=====================
 
