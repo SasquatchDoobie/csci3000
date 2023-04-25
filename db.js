@@ -10,24 +10,20 @@ const pool = mariadb.createPool({
 
 })
 
-module.exports.send = async function(query) {
-	await sendQuery(query)
-}
+var send = async function(query) {
 
-
-var sendQuery = async function(query) {
-	
-	let conn;
 	try {
 
-		conn = await pool.getConnection()
-		return rows = await conn.query(query)
+		const rows = await pool.query(query)
+		return rows
 
 	} catch (err) {
 		
 		console.log(`Error connecting to ${process.env.DB_NAME}`)
 		console.log(err)
 
-	} finally { if (conn) return conn.end() }
-	
+	}
+
 }
+
+module.exports.send = send

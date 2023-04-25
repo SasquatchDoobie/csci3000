@@ -7,10 +7,10 @@ USE project_database;
 DROP TABLE IF EXISTS Users;
 
 CREATE TABLE Users (
-	id int NOT NULL UNIQUE,
-    username varchar(40) NOT NULL UNIQUE,
+	id varchar(40) NOT NULL UNIQUE,
 	fname varchar(40) NOT NULL,
 	lname varchar(40) NOT NULL,
+    username varchar(40) NOT NULL UNIQUE,
 	password char(128) NOT NULL,
 	PRIMARY KEY (id)
 );
@@ -23,7 +23,7 @@ CREATE TABLE Images (
 	creationdate date NOT NULL,
 	imageowner varchar(40) NOT NULL,
 	PRIMARY KEY (imageid),
-	FOREIGN KEY (imageowner) REFERENCES Users(username)
+	FOREIGN KEY (imageowner) REFERENCES Users(id)
 );
 
 DROP TABLE IF EXISTS Gallery;
@@ -43,5 +43,5 @@ CREATE TABLE GalleryContent (
 	FOREIGN KEY (image) REFERENCES Images(imageid)
 );
 
-INSERT INTO Users();
+INSERT INTO Users VALUES ('1682206971262', 'bob', 'duncan', 'bobduncan01', '$2b$12$ICr74Suh8TuFstwSHGlwXuVV/ZgOiKUC7p.Agv9qqDGzDvDV0N1Pq');
 

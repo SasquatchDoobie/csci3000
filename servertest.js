@@ -11,7 +11,7 @@ const passportInit = require('./passport.js')
 
 passportInit(
 	passport, 
-	username =>	users.find( user => user.username === username ),
+	username =>	{async user => {const r = await db.send('SELECT * FROM Users'); r.username === username}},
 	id => users.find( user => user.id === id )
 )
 
@@ -51,8 +51,6 @@ app.get('/', checkAuthentication, getData, (req, res) => {
 
 app.get('/login', (req, res) => {
 
-	updateUsers()
-
 	res.render('login.ejs')
 
 })
@@ -73,17 +71,14 @@ app.get('/registration', (req, res) => {
 
 app.post('/registration', async (req, res) => {
 
-	let h;
-
 	try { 
 
 		const password_hashed = await bcrypt.hash(req.body.password, 12)
 
-		h = await db.send(`INSERT INTO Users VALUES ('${Date.now().toString}', '${req.body.firstname}', '${req.body.lastname}', '${req.body.username}', '${password_hashed}')`)
-
-		await updateUsers()
+		const response = await db.send(`INSERT INTO Users VALUES ('${Date.now().toString()}', '${req.body.firstname}', '${req.body.lastname}', '${req.body.username}', '${password_hashed}');`)
 
 		console.log("A new user has been registered:")
+		console.log(response)
 
 		res.redirect('/login')
 
@@ -101,9 +96,7 @@ const content = [
 
 ]
 
-let users = []
-
-async function checkAuthentication(req, res, next) {
+function checkAuthentication(req, res, next) {
 
 	if(req.isAuthenticated()) return next()
 
@@ -127,12 +120,6 @@ async function getData(req, res, next) {
 
 	next()
 
-}
-
-//I don't know crap about using passport with a db. This is how I got it working, deadlines people! Deadlines!!!
-async function updateUsers() {
-	users = await db.send('SELECT * FROM Users')
-	return true;
 }
 
 app.listen(3000)
