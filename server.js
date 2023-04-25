@@ -14,6 +14,7 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const passportInit = require('./passport.js')
+const path = require('path')
 
 passportInit(
 	passport, 
@@ -42,6 +43,8 @@ app.use(express.urlencoded({ extended: false }))
 //Enable Content-Type: application/json parsing
 app.use(express.json())
 
+//Enable static content
+app.use(express.static(path.join(__dirname, 'public')))
 
 
 //=====================
