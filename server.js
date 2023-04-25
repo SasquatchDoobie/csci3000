@@ -99,7 +99,7 @@ app.post('/login', passport.authenticate('local', {
 
 app.get('/registration', (req, res) => {
 
-	res.render('register.ejs')
+	res.render('login.ejs')
 
 })
 
