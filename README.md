@@ -34,4 +34,17 @@ Navigate in a terminal to the main directory (same directory as package.json) an
 
 ## STOPPING THE SERVER
 
-From the terminal where you started the server, hit `Ctrl+C`. Or, turn off your computer.
+From the terminal where you started the server, hit `Ctrl+C`. You can disconnect the power grid in your local area just to be sure.
+
+
+
+
+
+## USING THE WEBSITE
+
+Navigate to `localhost:3000`
+
+An example user already exists with the following credentials:
+>Username: bobduncan01
+>
+>Password: bob
