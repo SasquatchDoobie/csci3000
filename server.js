@@ -2,53 +2,131 @@ require('dotenv').config()
 
 const express = require('express')
 const app = express()
-const jwt = require('jsonwebtoken')
 
-//Enable application/json parsing
+const bcrypt = require('bcrypt')
+const passport = require('passport')
+const flash = require('express-flash')
+const session = require('express-session')
+const passportInit = require('./passport.js')
+
+passportInit(
+	passport, 
+	username =>	users.find( user => user.username === username ),
+	id => users.find( user => user.id === id )
+)
+
+const db = require('./db')
+
+app.use(flash())
+app.use(session({
+	secret: process.env.SECRET_SESSION_TOKEN,
+	resave: false,
+	saveUninitialized: false
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+//Enable EJS support for dymanic content
+app.set('view-engine', 'ejs')
+
+//Enable form params in req object
+app.use(express.urlencoded({ extended: false }))
+
+//Enable Content-Type: application/json parsing
 app.use(express.json())
 
+app.get('/', checkAuthentication, getData, (req, res) => {
 
-const content = [
+	console.log("plz work " + res.data)
 
-	{ username: 'test', title: 'Post 1'},
-	{ username: 'test2', title: 'Post 2'}
+	res.render('index.ejs', {
 
-]
+		name: req.user.firstname,
+		content: res.data
 
-//Serve an image to the user
-app.get('/content', authToken, (req, res) => {
-
-	console.log(req.user.name + " is requesting content")
-	res.json(content.filter(usercontent => usercontent.username === req.user.name))
+	})
 
 })
 
-//Authenticates tokens
-function authToken(req, res, next) {
+app.get('/login', (req, res) => {
 
-	const authHeader = req.headers['authorization']
-	const token = authHeader && authHeader.split(' ')[1]
-	
-	console.log(token)
+	res.render('login.ejs')
 
-	//Check if token does not exist
-	if(token == null) {
-		console.log("No token")
-		return res.sendStatus(401)
-	}
-	
-	//Verify token is genuine
-	jwt.verify(token, process.env.SECRET_TOKEN, (err, user) => {
-		
-		if (err) {
-			console.log("Token is invalid")
-			return res.sendStatus(403)
-		}
+})
 
-		req.user = user
-		next()
-	
-	})
+app.post('/login', passport.authenticate('local', {
+
+	successRedirect: '/',
+	failureRedirect: '/login',
+	failureFlash: true
+
+}))
+
+app.get('/registration', (req, res) => {
+
+	res.render('register.ejs')
+
+})
+
+app.post('/registration', async (req, res) => {
+
+	try { 
+
+		const password_hashed = await bcrypt.hash(req.body.password, 12)
+
+		users.push({
+			id: Date.now().toString(),
+			firstname: req.body.firstname,
+			lastname: req.body.lastname,
+			username: req.body.username,
+			password: password_hashed
+		})
+
+		console.log("A new user has been registered:")
+		console.log(users)
+
+		res.redirect('/login')
+
+	} catch {
+
+		res.redirect('/registration')
+
+	}})
+
+//MOVE TO DATABSE :P
+const content = [
+
+	{ username: 'test', title: 'Post 1'},
+	{ username: 'bobduncan01', title: 'bobduncan01\'s content'}
+
+]
+
+const users = []
+
+function checkAuthentication(req, res, next) {
+
+	if(req.isAuthenticated()) return next()
+
+	res.redirect('/login')
+
+}
+
+async function getData(req, res, next) {
+
+	let data
+
+	try {
+
+		data = await db.send(`select * from Users`)
+
+	} catch (err) { return res.status(500) }
+
+	res.data = data
+
+	console.log(res.data)
+
+	next()
 
 }
 

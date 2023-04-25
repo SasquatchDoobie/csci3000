@@ -1,23 +1,33 @@
-const db = require("mysql")
+const mariadb = require("mariadb")
 require("dotenv").config()
 
-const dbConn = db.createConnection({
+const pool = mariadb.createPool({
 	
-	host : process.env.DB_HOST,
-	user : process.env.DB_USER,
-	password : process.env.DB_PASSWORD,
-	database : process.env.DB_NAME
+	host: process.env.DB_HOST,
+	user: process.env.DB_USER,
+	password: process.env.DB_PASSWORD,
+	database: process.env.DB_NAME
 
 })
 
-dbConn.connect(function(e){
+module.exports.send = async function(query) {
+	await sendQuery(query)
+}
 
-	if(!e){
-		console.log(`Connected to database: ${process.env.DB_NAME}`)
-	} else {
-		console.log(`Error connecting to database: ${process.env.DB_NAME}`) 
-	}
 
-})
+var sendQuery = async function(query) {
+	
+	let conn;
+	try {
 
-module.exports = {dbConn}
+		conn = await pool.getConnection()
+		return rows = await conn.query(query)
+
+	} catch (err) {
+		
+		console.log(`Error connecting to ${process.env.DB_NAME}`)
+		console.log(err)
+
+	} finally { if (conn) return conn.end() }
+	
+}
