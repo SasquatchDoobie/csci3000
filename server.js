@@ -1,3 +1,9 @@
+//
+//		This website is vulnerable to SQL Injections
+//
+//		This is a feature, not a bug. Have fun!
+//
+
 require('dotenv').config()
 
 const express = require('express')
@@ -36,9 +42,13 @@ app.use(express.urlencoded({ extended: false }))
 //Enable Content-Type: application/json parsing
 app.use(express.json())
 
-app.get('/', checkAuthentication, getData, (req, res) => {
 
-	console.log("plz work " + res.data)
+
+//=====================
+// INDEX/MAIN PAGE
+//=====================
+
+app.get('/', checkAuthentication, getData, (req, res) => {
 
 	res.render('index.ejs', {
 
@@ -48,6 +58,10 @@ app.get('/', checkAuthentication, getData, (req, res) => {
 	})
 
 })
+
+//=====================
+// LOGIN
+//=====================
 
 app.get('/login', (req, res) => {
 
@@ -65,6 +79,10 @@ app.post('/login', passport.authenticate('local', {
 
 }))
 
+//=====================
+// REGISTRATION
+//=====================
+
 app.get('/registration', (req, res) => {
 
 	res.render('register.ejs')
@@ -76,19 +94,24 @@ app.post('/registration', async (req, res) => {
 	let h;
 
 	try { 
-
+		
+		//Hashes password from post request
 		const password_hashed = await bcrypt.hash(req.body.password, 12)
 
-		h = await db.send(`INSERT INTO Users VALUES ('${Date.now().toString}', '${req.body.firstname}', '${req.body.lastname}', '${req.body.username}', '${password_hashed}')`)
+		//Stores user info in the database
+		h = await db.send(`INSERT INTO Users VALUES ('${Date.now().toString()}', '${req.body.firstname}', '${req.body.lastname}', '${req.body.username}', '${password_hashed}')`)
 
+		//makes the login system work.
 		await updateUsers()
 
-		console.log("A new user has been registered:")
+		//fun fact, goes off if a user already exists. liar.
+		console.log("> A new user has been registered")
 
 		res.redirect('/login')
 
 	} catch {
 
+		//something has gone wrong. cry.
 		res.redirect('/registration')
 
 	}})
@@ -103,6 +126,16 @@ const content = [
 
 let users = []
 
+//===============================
+// Route authentication callback
+//===============================
+//
+//	This function checks to see if the user is logged in before accessing a route
+//	If not, it routes them back to the login page
+//
+//	Add this function to a route to secure it
+//
+
 async function checkAuthentication(req, res, next) {
 
 	if(req.isAuthenticated()) return next()
@@ -110,6 +143,9 @@ async function checkAuthentication(req, res, next) {
 	res.redirect('/login')
 
 }
+
+
+// Function to perform a query. Could make this a generic function but meh.
 
 async function getData(req, res, next) {
 
@@ -122,8 +158,6 @@ async function getData(req, res, next) {
 	} catch (err) { return res.status(500) }
 
 	res.data = data
-
-	console.log(res.data)
 
 	next()
 
