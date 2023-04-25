@@ -1,0 +1,60 @@
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 32 px;
+    
+}
+
+#file_upload {
+    display:grid;
+    grid-template-columns: auto auto auto auto;
+    gap: 25px;
+    justify-content: center;
+    flex: 0 1 80%;
+    flex-wrap: wrap;
+
+}
+#gallery_name{
+    display: flex;
+    justify-content: center;
+}
+#account_name{
+    display:flex;
+    justify-content: right;
+}
+
+
+#image_display,#image_display1,#image_display2,#image_display3,#image_display4,#image_display5,#image_input6 {
+    width: 375px;
+    height: 211px;
+    border: 1px solid black;
+    background-position: center;
+    background-size:cover;
+    display: flex;
+    justify-content: center;
+    
+    
+
+}
+#image_input2{
+    display:block;
+}
+
+nav  {
+    display:flex;
+    flex: 0 1 20%;
+    flex-direction: column;
+    
+}
+footer ul{
+    display: flex;
+   flex-direction: row;
+   justify-content: center; 
+   list-style: none;
+   padding: 0;
+   white-space: nowrap;
+}
+
