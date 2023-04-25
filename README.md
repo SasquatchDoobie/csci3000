@@ -1,5 +1,3 @@
-# CSCI 3000 Web Programming Project
-
 ## STARTING THE DATABASE
 
 Navigate in a terminal to the `./database` folder. You'll see these two files:
