@@ -15,6 +15,22 @@ const flash = require('express-flash')
 const session = require('express-session')
 const passportInit = require('./passport.js')
 const path = require('path')
+const multer = require('multer')
+
+//==========================
+// Storage params for multer
+//==========================
+
+let multerStorage = multer.diskStorage({
+	
+	destination: function (req, file, cb) {
+		cb( null, path.join(__dirname, 'public/images/') ) },
+	
+	filename: function (req, file, cb) {
+		cb( null, Date.now() ) },
+})
+
+let multerUpload = multer({ storage: multerStorage }).any()
 
 passportInit(
 	passport, 
@@ -59,7 +75,6 @@ app.get('/', checkAuthentication, getData, (req, res) => {
 		content: res.data
 
 	})
-
 })
 
 //=====================
@@ -68,8 +83,30 @@ app.get('/', checkAuthentication, getData, (req, res) => {
 
 app.get('/test', (req, res) => {
 
-	res.sendFile(__dirname + '/views/rough_draft.ejs.html')
+	const uploadStatus = req.app.locals.uploadStatus
+	req.app.locals.uploadStatus = null
 
+	res.render('gallery.ejs', {
+		uploadStatus : uploadStatus
+	})
+
+})
+
+//=====================
+// test upload
+//=====================
+
+app.post('/upload', (req, res) => {
+	
+	multerUpload(req, res, function(err) {
+
+		if(err) return res.end("Error uploading files")
+
+		req.app.locals.uploadStatus = true
+	
+		res.redirect('/test')
+	
+	})
 })
 
 
@@ -97,12 +134,6 @@ app.post('/login', passport.authenticate('local', {
 // REGISTRATION
 //=====================
 
-app.get('/registration', (req, res) => {
-
-	res.render('login.ejs')
-
-})
-
 app.post('/registration', async (req, res) => {
 
 	let h;
@@ -126,7 +157,7 @@ app.post('/registration', async (req, res) => {
 	} catch {
 
 		//something has gone wrong. cry.
-		res.redirect('/registration')
+		res.redirect('/login')
 
 	}})
 
@@ -183,4 +214,5 @@ async function updateUsers() {
 	return true;
 }
 
-app.listen(3000)
+app.listen(process.env.SERVER_PORT)
+console.log(`> Server is running on port ${process.env.SERVER_PORT}`)
