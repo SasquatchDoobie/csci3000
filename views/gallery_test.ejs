@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Gallery Rough Draft</title>
+        <link rel="stylesheet" href="stylesheets/main.css">
+
+    </head>
+
+    <body>
+        <header>
+            <h1 id="gallery_name">Main Gallery</h1>
+        </header>
+        <nav>
+            <h2 id="album_name">Albums</h2>
+            <ul>
+                <li>Album 1</li>
+                <li>Album 2</li>
+                <li>Album 3</li>
+            </ul>  
+        </nav>
+        <section id="file_upload">
+
+            <% if(uploadStatus == true) { %>
+                <label for="message" class="alert">Upload success</label>
+            <% } %>
+
+            <form action="/upload" enctype="multi-part/form-data" method="post">
+
+                <input id="input" name="input" type="file" class="file" multiple="multiple" accept="image/png, image/jpg, image/jpeg, image/gif">
+
+                <button type="submit">Upload</button>
+
+            </form>
+
+            <% if(fileTypeError == true) { %>
+                <label for="message" class="alert">File must be type: jpg|jpeg|png|gif</label>
+            <% } %>
+
+            <form id="queue">
+
+                <div class="queue">
+                    <button type="submit">Remove</button>
+                </div>
+
+            </form>
+        
+        </section>
+
+
+        <footer>
+            <ul>
+                <li><a href="rough_draft.ejs.html">1</a></li>
+                <li><a href="rough_draft_2.html">2</a></li>
+                <li><a href="rough_draft_3.html">3</a></li>
+            </ul>
+        </footer>
+    
+        <script src="scripts/script_test.js"></script>
+
+    </body>
+
+</html>
