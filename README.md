@@ -20,7 +20,7 @@ Once connected, run the statements in `init.sql`. This will automatically create
 
 Navigate in a terminal to the `./database` folder. Run `docker-compose down` to stop the server.
 
-To delete the database, connect to MariaDB and run the statements in `init.sql`.
+To recreate the database, connect to MariaDB and run the statements in `init.sql`.
 
 To remove the database server, search how to clear Docker volumes/images from your system
 
