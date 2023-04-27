@@ -15,22 +15,7 @@ const flash = require('express-flash')
 const session = require('express-session')
 const passportInit = require('./passport.js')
 const path = require('path')
-const multer = require('multer')
-
-//==========================
-// Storage params for multer
-//==========================
-
-let multerStorage = multer.diskStorage({
-	
-	destination: function (req, file, cb) {
-		cb( null, path.join(__dirname, 'public/images/') ) },
-	
-	filename: function (req, file, cb) {
-		cb( null, Date.now() ) },
-})
-
-let multerUpload = multer({ storage: multerStorage }).any()
+const {upload} = require('./multer.js')
 
 passportInit(
 	passport, 
@@ -86,8 +71,12 @@ app.get('/test', (req, res) => {
 	const uploadStatus = req.app.locals.uploadStatus
 	req.app.locals.uploadStatus = null
 
+	const fileTypeError = req.fileValidatorError
+	req.fileValidatorError = null
+
 	res.render('gallery.ejs', {
-		uploadStatus : uploadStatus
+		uploadStatus : uploadStatus,
+		fileTypeError : fileTypeError
 	})
 
 })
@@ -96,17 +85,20 @@ app.get('/test', (req, res) => {
 // test upload
 //=====================
 
-app.post('/upload', (req, res) => {
-	
-	multerUpload(req, res, function(err) {
+app.post('/upload', upload.array('input', 50), (req, res) => {
 
-		if(err) return res.end("Error uploading files")
+		try {
+
+		//req.body.input returns a list of items uploaded
+		console.log("> Uploaded files: " + req.body.input)
 
 		req.app.locals.uploadStatus = true
-	
+
 		res.redirect('/test')
-	
-	})
+
+		} catch (err) {
+			res.end("Error uploading files")
+		}
 })
 
 
@@ -139,7 +131,7 @@ app.post('/registration', async (req, res) => {
 	let h;
 
 	try { 
-		
+
 		//Hashes password from post request
 		const password_hashed = await bcrypt.hash(req.body.password, 12)
 
