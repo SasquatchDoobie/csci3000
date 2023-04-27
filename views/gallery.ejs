@@ -13,14 +13,16 @@
         </header>
         <div id="column_container">
             <div id="left_column">
+                <h1 id="album_name">Albums</h1>
                 <nav>
-                    <h2 id="album_name">Albums</h2>
                     <button id="create_album_button"><h3>Create album</h3></button>
-                    <ul>
-                        <li>Album 1</li>
-                        <li>Album 2</li>
-                        <li>Album 3</li>
-                    </ul>  
+                    <div id="album_list">
+                        <!--TODO: Inject albums with links here-->
+                        <a href="/test" class="album_list_item"><p>My album</p></a>
+                        <a href="/test" class="album_list_item">
+                            <p>My album2</p>
+                        </a>
+                    </div>
                 </nav>
             </div>
             <div id="right_column">
@@ -48,19 +50,15 @@
                 
                 </section>
             </div>
-        </div>
-
-
-        <footer>
-            <ul>
-                <li><a href="rough_draft.ejs.html">1</a></li>
-                <li><a href="rough_draft_2.html">2</a></li>
-                <li><a href="rough_draft_3.html">3</a></li>
-            </ul>
-        </footer>
-    
+        </div>    
         <script src="scripts/script_test.js"></script>
-
     </body>
+    <footer>
+        <ul>
+            <li><a href="rough_draft.ejs.html">1</a></li>
+            <li><a href="rough_draft_2.html">2</a></li>
+            <li><a href="rough_draft_3.html">3</a></li>
+        </ul>
+    </footer>
 
 </html>

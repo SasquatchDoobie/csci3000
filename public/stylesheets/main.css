@@ -80,8 +80,19 @@ footer ul{
 }
 
 #create_album_button {
-    width: 50%;
+    width: 70%;
     align-self: center;
     border-radius: 16px;
     background-color: lightblue;
+}
+
+#album_list {
+    width: 70%;
+    text-align: left;
+    align-self: center;
+}
+
+.album_list_item {
+    text-decoration: none;
+    color: black;
 }
