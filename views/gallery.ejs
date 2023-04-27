@@ -11,37 +11,44 @@
         <header>
             <h1 id="gallery_name">Main Gallery</h1>
         </header>
-        <nav>
-            <h2 id="album_name">Albums</h2>
-            <ul>
-                <li>Album 1</li>
-                <li>Album 2</li>
-                <li>Album 3</li>
-            </ul>  
-        </nav>
-        <section id="file_upload">
+        <div id="column_container">
+            <div id="left_column">
+                <nav>
+                    <h2 id="album_name">Albums</h2>
+                    <button id="create_album_button"><h3>Create album</h3></button>
+                    <ul>
+                        <li>Album 1</li>
+                        <li>Album 2</li>
+                        <li>Album 3</li>
+                    </ul>  
+                </nav>
+            </div>
+            <div id="right_column">
+                <section id="file_upload">
 
-            <% if(uploadStatus == true) { %>
-                <label for="message" class="alert">Upload succesfull</label>
-            <% } %>
+                    <% if(uploadStatus == true) { %>
+                        <label for="message" class="alert">Upload succesfull</label>
+                    <% } %>
 
-            <form enctype="multi-part/form-data" method="post">
+                    <form enctype="multi-part/form-data" method="post">
 
-                <input id="input" type="file" class="file" multiple="multiple" accept="image/png, image/jpg, image/jpeg, image/gif">
+                        <input id="input" type="file" class="file" multiple="multiple" accept="image/png, image/jpg, image/jpeg, image/gif">
 
-                <button type="submit">Upload</button>
+                        <button type="submit">Upload</button>
 
-            </form>
+                    </form>
 
-            <form id="queue">
+                    <form id="queue">
 
-                <div class="queue">
-                    <button type="submit">Remove</button>
-                </div>
+                        <div class="queue">
+                            <button type="submit">Remove</button>
+                        </div>
 
-            </form>
-        
-        </section>
+                    </form>
+                
+                </section>
+            </div>
+        </div>
 
 
         <footer>

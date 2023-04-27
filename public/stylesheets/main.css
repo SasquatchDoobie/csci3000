@@ -58,3 +58,30 @@ footer ul{
    white-space: nowrap;
 }
 
+#album_name {
+    margin-top: 0;
+}
+
+#column_container {
+    display: flex;
+    margin-top: 80px;
+}
+
+#left_column {
+    width: 20vw;
+    text-align: center;
+}
+
+#right_column {
+    padding: 40px;
+    width: 80vw;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+}
+
+#create_album_button {
+    width: 50%;
+    align-self: center;
+    border-radius: 16px;
+    background-color: lightblue;
+}
