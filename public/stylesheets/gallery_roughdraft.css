@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px;
+    /*Nav bar color*/
+    background: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 99;
+}
+
+.logo {
+    font-size: 2em;
+    color: #fff;
+    user-select: none;
+}
+
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+.navigation a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.navigation .btnSignout-popup {
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #fff;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    transition: .5s;
+}
+
+.navigation .btnSignout-popup:hover{
+    background: #fff;
+    color: black;
+}
+
+/*-----Album Container-----*/
+.container {
+    float: left;
+    width: 15%;
+    margin-top: 150px;
+}
+
+.container h2 {
+    margin-left: 10px;
+    text-align: center;
+}
+  
+.btnAlbum {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    margin-left: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+.btnAlbum:hover {
+    background-color: #3e8e41;
+    cursor: pointer;
+}
+
+.album-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 10px;
+    height: 300px;  
+    overflow-y: scroll;  
+}
+
+.album-list li {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-bottom: 1px solid #ddd;
+}
+
+.album-list .album-list-item {
+    text-decoration: none;
+    color: black;
+}
+
+/*-----Photo Container-----*/
+.photo-section {
+    float: left;
+    width: 85%;
+    margin-top: 100px;
+    margin-left: -1px;
+  }
+  
+.photo-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 40px;
+}
+  
+.photo-container {
+    float: left;
+    position: relative;
+    max-width: 100%;
+    height: 500px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: scroll;
+}
+  
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+  
+.add-photo-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+}
+  
+.add-photo-button:hover {
+    background-color: #3e8e41;
+    cursor: pointer;
+}
+  
+.photos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+  
+.photos img {
+    width: 30%;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .photos img {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+}
