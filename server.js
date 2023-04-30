@@ -14,6 +14,7 @@ const passport = require('passport')
 const flash = require('express-flash')
 const session = require('express-session')
 const passportInit = require('./passport.js')
+const methodOverride = require('method-override')
 const path = require('path')
 const {upload} = require('./multer.js')
 
@@ -47,6 +48,9 @@ app.use(express.json())
 //Enable static content
 app.use(express.static(path.join(__dirname, 'public')))
 
+//Enable overriding methods
+app.use(methodOverride('_m'))
+
 
 //=====================
 // INDEX/MAIN PAGE
@@ -76,7 +80,7 @@ app.get('/gallery', checkAuthentication, getGalleryData, (req, res) => {
 	const fileTypeError = req.fileValidatorError
 	req.fileValidatorError = null
 
-	res.render('gallery.ejs', {
+	res.render('gallery_roughdraft.ejs', {
 		name: req.user.fname,
 		content: res.gallery_data,
 		uploadStatus : uploadStatus,
@@ -115,7 +119,7 @@ app.get('/login', (req, res) => {
 
 	updateUsers()
 
-	res.render('login-old.ejs')
+	res.render('login.ejs')
 
 })
 
@@ -126,6 +130,15 @@ app.post('/login', passport.authenticate('local', {
 	failureFlash: true
 
 }))
+
+//=====================
+// LOGOUT
+//=====================
+
+app.delete('/logout', (req, res) => {
+	req.logout()
+	res.redirect('/login')
+})
 
 //=====================
 // REGISTRATION
