@@ -56,17 +56,19 @@ app.get('/', checkAuthentication, getData, (req, res) => {
 
 	res.render('index.ejs', {
 
-		name: req.user.firstname,
-		content: res.data
+		name: req.user.fname,
+		id: req.user.id,
+		content: res.data,
+		content_user: req.user
 
 	})
 })
 
 //=====================
-// test page
+// gallery page
 //=====================
 
-app.get('/test', (req, res) => {
+app.get('/gallery', checkAuthentication, getGalleryData, (req, res) => {
 
 	const uploadStatus = req.app.locals.uploadStatus
 	req.app.locals.uploadStatus = null
@@ -75,6 +77,8 @@ app.get('/test', (req, res) => {
 	req.fileValidatorError = null
 
 	res.render('gallery.ejs', {
+		name: req.user.fname,
+		content: res.gallery_data,
 		uploadStatus : uploadStatus,
 		fileTypeError : fileTypeError
 	})
@@ -85,20 +89,21 @@ app.get('/test', (req, res) => {
 // test upload
 //=====================
 
-app.post('/upload', upload.array('input', 50), (req, res) => {
+app.post('/upload', checkAuthentication, (req, res) => {
 
-		try {
+	upload(req, res, (err) => {	
+		
+		if(err) {
+			console.log('big oopsies')
+			res.redirect('/test')
+		}
 
-		//req.body.input returns a list of items uploaded
-		console.log("> Uploaded files: " + req.body.input)
+		console.log(req.files)
 
 		req.app.locals.uploadStatus = true
 
 		res.redirect('/test')
-
-		} catch (err) {
-			res.end("Error uploading files")
-		}
+	})
 })
 
 
@@ -110,7 +115,7 @@ app.get('/login', (req, res) => {
 
 	updateUsers()
 
-	res.render('login.ejs')
+	res.render('login-old.ejs')
 
 })
 
@@ -187,17 +192,24 @@ async function checkAuthentication(req, res, next) {
 async function getData(req, res, next) {
 
 	let data
-
 	try {
-
 		data = await db.send(`select * from Users`)
-
 	} catch (err) { return res.status(500) }
-
 	res.data = data
+	next()
+}
+
+// Function to get gallery data
+
+async function getGalleryData(req, res, next) {
+
+	let gallery_data
+	try {
+		gallery_data = await db.send(`SELECT * FROM Album WHERE albumowner='${req.user.id}';`)
+	} catch (err) { return res.status(500) }
+	res.gallery_data = gallery_data
 
 	next()
-
 }
 
 //I don't know crap about using passport with a db. This is how I got it working, deadlines people! Deadlines!!!

@@ -18,30 +18,40 @@ CREATE TABLE Users (
 DROP TABLE IF EXISTS Images;
 
 CREATE TABLE Images (
-	imageid int NOT NULL UNIQUE,
-	imagepath varchar(100) NOT NULL UNIQUE,
-	creationdate date NOT NULL,
+	imagepath VARCHAR(255) NOT NULL,
 	imageowner varchar(40) NOT NULL,
-	PRIMARY KEY (imageid),
-	FOREIGN KEY (imageowner) REFERENCES Users(id)
+    PRIMARY KEY (imagepath),
+    CONSTRAINT `fk_imageowner`
+		FOREIGN KEY (imageowner) REFERENCES Users(id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
 );
 
-DROP TABLE IF EXISTS Gallery;
+DROP TABLE IF EXISTS Album;
 
-CREATE TABLE Gallery (
-	galleryid int NOT NULL UNIQUE,
-	galleryname varchar(100) NOT NULL DEFAULT "",
-	creationdate date
+CREATE TABLE Album (
+	albumid varchar(40) NOT NULL UNIQUE,
+	albumname varchar(100) NOT NULL DEFAULT "",
+	albumcontent LONGTEXT CHECK (JSON_VALID(albumcontent)),
+    albumowner varchar(40) NOT NULL,
+    PRIMARY KEY (albumid),
+    CONSTRAINT `fk_albumowner`
+		FOREIGN KEY (albumowner) REFERENCES Users (id)
+        ON DELETE CASCADE
+        ON UPDATE RESTRICT
 );
 
-DROP TABLE IF EXISTS GalleryContent;
-
-CREATE TABLE GalleryContent (
-	gallery int NOT NULL,
-	image int NOT NULL,
-	FOREIGN KEY (gallery) REFERENCES Gallery(galleryid),
-	FOREIGN KEY (image) REFERENCES Images(imageid)
-);
-
+#password is bob
 INSERT INTO Users VALUES ('1682206971262', 'bob', 'duncan', 'bobduncan01', '$2b$12$ICr74Suh8TuFstwSHGlwXuVV/ZgOiKUC7p.Agv9qqDGzDvDV0N1Pq');
+
+#bob has these five images
+INSERT INTO Images VALUES ('1682629763984_3fbffc827732bba9d8822c9be8da0400.jpg','1682206971262');
+INSERT INTO Images VALUES ('1682629763985_0tYGhcn.gif','1682206971262');
+INSERT INTO Images VALUES ('1682629763992_399d35f.jpg','1682206971262');
+INSERT INTO Images VALUES ('1682641078630_0ab06ebb-4912-436d-a62c-e9eaf1cce822.png','1682206971262');
+INSERT INTO Images VALUES ('1682641078634_285a96c.jpg','1682206971262');
+
+#bob has these two albums containing the five images above
+INSERT INTO Album VALUES ('1682818020944_1682206971262','Dank Meme Gallery','{"images":["1682629763984_3fbffc827732bba9d8822c9be8da0400.jpg","1682629763985_0tYGhcn.gif","1682629763992_399d35f.jpg"]}','1682206971262');
+INSERT INTO Album VALUES ('1682818200068_1682206971262','A Silly Gallery','{"images":["1682641078630_0ab06ebb-4912-436d-a62c-e9eaf1cce822.png","1682641078634_285a96c.jpg"]}','1682206971262');
 
