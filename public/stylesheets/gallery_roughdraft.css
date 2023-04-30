@@ -2,49 +2,53 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
 /*-----Nav Bar-----*/
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 100px;
-    /*Nav bar color*/
-    background: black;
+#header {
     display: flex;
     justify-content: space-between;
+    padding: 0px 50px;
     align-items: center;
-    z-index: 99;
+    background: #444368;
 }
-
-.logo {
-    font-size: 2em;
-    color: #fff;
-    user-select: none;
-}
-
-.navigation a {
-    position: relative;
-    font-size: 1.1em;
-    color: #fff;
+  
+#header #logo {
+    font-size: 25px;
+    font-family: 'Segoe Script', Arial, Helvetica, sans-serif;;
+    color: white;
     text-decoration: none;
+    margin-left: 30px;
+}
+  
+#nav-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
     font-weight: 500;
     margin-left: 40px;
 }
 
-.navigation a:hover {
-    color: #fff;
-    text-decoration: underline;
+#nav-items a:hover{
+      color:white;
+      background-color: #585787;
 }
-
-.navigation .btnSignout-popup {
+  
+#nav-items a {
+    color: white;
+    font-size: 1.1em;
+    padding: 35px 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+  
+/*-----Login Button-----*/
+#nav-items .btnSignout {
     width: 130px;
     height: 50px;
-    background: transparent;
-    border: 2px solid #fff;
+    background: #585787;
+    border: none;
     outline: none;
     border-radius: 6px;
     cursor: pointer;
@@ -52,12 +56,13 @@ header {
     color: #fff;
     font-weight: 500;
     margin-left: 40px;
+    margin-right: 50px;
     transition: .5s;
 }
-
-.navigation .btnSignout-popup:hover{
-    background: #fff;
-    color: black;
+  
+#nav-items .btnSignout:hover{
+    background: #302f49;
+    color: #fff;
 }
 
 /*-----Album Container-----*/

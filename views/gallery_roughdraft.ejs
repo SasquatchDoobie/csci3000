@@ -10,15 +10,16 @@
 </head>
 
 <body>
-    <header>
-        <h2 class="logo">Logo</h2>
-        <nav class="navigation">
-            <!--Input links to these pages-->
-            <a href="#">Home</a>
-            <a href="#">Gallery</a>
-            <a href="#">Account</a>
-            <button class="btnSignout-popup">Sign Out</button>
-        </nav>
+    <header id="header">
+      <a href="/" id="logo">PhotoGal</a>
+      <nav id="nav-items">
+        <a href="/">Home</a>
+        <a href="/gallery">Gallery</a>
+        <a href="/account">Account</a>
+        <form action='/logout?_m=DELETE' method=POST>
+          <button type="submit" class="btnSignout">Sign Out</button>
+        </form>
+      </nav>
     </header>
 
     <div class="container">
