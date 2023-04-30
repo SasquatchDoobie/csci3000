@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Account Page</title>
+    <link rel="stylesheet" href="/stylesheets/account_page.css">
+</head>
+<body>
+    <header id="header">
+        <a href="Home_Page.html" id="logo">PhotoGal</a>
+        <nav id="nav-items">
+          <a href="/">Home</a>
+          <a href="/gallery">Gallery</a>
+          <a href="/account">Account</a>
+        </nav>
+      </header>
+      <main>
+      
+      <div id="header-color">
+
+      </div>
+      <h2 id="heading">Account Details</h2>
+      <div id="line-border">
+
+      </div>
+      <div id="description">
+        <img id="pic" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIkXb5B4wNLChBbQHQZQf6s7_-IKqhythFcGhi1zES8Q&usqp=CAU&ec=48665698">
+        <p>This provides basic information about the users account as well as personal.</p>
+      </div>
+      <div id="info">
+        <p>Name:  <%= fname + " " + lname %></p>
+        <p>Username:  <% username[0].username %></p>
+        <p>Date Joined: <%= new Date(parseInt(id)) %></p>
+      </div>
+      
+      
+      
+      <footer id="footer">
+        <div id="copy">&copy; 2023 Web Wizards Inc.</div>
+        <div id="bottom-links">
+          <div id="links">
+            <span>More</span>
+            <a href="/">Home</a>
+            <a href="/gallery">Gallery</a>
+            <a href="/account">Account</a>
+          </div>
+        </div>
+    </main>
+      </footer>
+      
+
+
+
+
+
+
+
+
+    
+</body>
+</html>

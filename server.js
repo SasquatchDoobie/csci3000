@@ -57,21 +57,16 @@ app.use(methodOverride('_m'))
 //=====================
 
 app.get('/', getData, (req, res) => {
-
-	res.render(home_page.ejs, {
-
-		name: req.user.fname
-
-	})
+	res.render('home_page.ejs')
 })
 
 //=====================
 // OLD INDEX/MAIN PAGE
 //=====================
 
-app.get('/oldindex', checkAuthentication, getData, (req, res) => {
+app.get('/debug', checkAuthentication, getData, (req, res) => {
 
-	res.render('index.ejs', {
+	res.render('debug.ejs', {
 
 		name: req.user.fname,
 		id: req.user.id,
@@ -79,6 +74,23 @@ app.get('/oldindex', checkAuthentication, getData, (req, res) => {
 		content_user: req.user
 
 	})
+})
+
+//=====================
+// account page
+//=====================
+
+app.get('/account', checkAuthentication, getUserData, (req, res) => {
+
+	res.render('account_page.ejs', {
+
+		fname: req.user.fname,
+		lname: req.user.lname,
+		username: res.data,
+		id: req.user.id
+
+	})
+
 })
 
 //=====================
@@ -220,6 +232,18 @@ async function getData(req, res, next) {
 	let data
 	try {
 		data = await db.send(`select * from Users`)
+	} catch (err) { return res.status(500) }
+	res.data = data
+	next()
+}
+
+// Function to get user data
+
+async function getUserData(req, res, next) {
+
+	let data
+	try {
+		data = await db.send(`select * from Users where (id='${req.user.id}')`)
 	} catch (err) { return res.status(500) }
 	res.data = data
 	next()
