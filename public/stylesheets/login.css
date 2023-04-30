@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -10,105 +10,30 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: white;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url("https://cdn.shopify.com/s/files/1/0330/1705/products/fa_print_2_1000x.jpg?v=1615579535");
 }
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px 100px;
-    /*change this color*/
-    background: black;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    z-index: 99;
-}
-
-.logo {
-    font-size: 2em;
-    color: #fff;
-    user-select: none;
-}
-
-.navigation a {
-    position: relative;
-    font-size: 1.1em;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 500;
-    margin-left: 40px;
-}
-
-.navigation .btnLogin-popup {
-    width: 130px;
-    height: 50px;
-    background: transparent;
-    border: 2px solid #fff;
-    outline: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1.1em;
-    color: #fff;
-    font-weight: 500;
-    margin-left: 40px;
-    transition: .5s;
-}
-
-.navigation .btnLogin-popup:hover{
-    background: #fff;
-    color: black;
-}
-
+/*-----Login Box-----*/
 .wrapper {
     position: relative;
     width: 400px;
     height: 440px;
-    margin-top: 100px;
-    border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 20px;
-    /*--May not need--*/
-    backdrop-filter: blur(20px);
-    /*--*/
+    background: #F5F5F5;
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    transform: scale(0);
-    transition: transform .5s ease, height .2s ease; 
-}
-
-.wrapper.active-popup {
-    transform: scale(1);
 }
 
 .wrapper.active {
-    /*height: 520px;*/
-    height: 600px;
+    height: 630px;
 }
 
 .wrapper .form-box {
     width: 100%;
     padding: 40px;
-}
-
-.wrapper .icon-close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 45px;
-    height: 45px;
-    font-size: 2em;
-    color: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    cursor: pointer;
-    z-index: 1;
 }
 
 .wrapper .form-box.login {
@@ -133,11 +58,13 @@ header {
 }
 
 .form-box h2 {
-    font-size: 2em;
+    font-size: 40px;
+    font-family: 'Segoe Script', Arial, Helvetica, sans-serif;
     color: black;
     text-align: center; 
 }
 
+/*-----Input Box-----*/
 .input-box {
     position: relative;
     width: 100%;
@@ -171,6 +98,7 @@ header {
     outline: none;
     font-size: 1em;
     color: black;
+    background: #F5F5F5;
     font-weight: 600;
     padding: 0 35px 0 5px;
 }
@@ -183,6 +111,7 @@ header {
     line-height: 57px;
 }
 
+/*-----Remember Me Box-----*/
 .remember {
     font-size: .9em;
     color: black;
@@ -195,10 +124,11 @@ header {
     margin-right: 3px;
 }
 
-.btn {
+/*-----Login Button-----*/
+.btnLogin-register {
     width: 100%;
     height: 45px;
-    background: black;
+    background: #706FA2;
     border: none;
     outline: none;
     border-radius: 6px;
@@ -208,11 +138,12 @@ header {
     font-weight: 500;
 }
 
-.btn:hover {
-    background: navy;
+.btnLogin-register:hover {
+    background: #585787;
     color: white;
 }
 
+/*-----Login/Register Link-----*/
 .login-register {
     font-size: .9em;
     color: black;

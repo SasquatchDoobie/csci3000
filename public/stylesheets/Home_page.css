@@ -1,21 +1,22 @@
-
-
 body {
   margin: 0;
   box-sizing: border-box;
+  font-family: 'Roboto', Helvetica, Arial, sans-serif;
 }
 
+/*-----Nav Bar-----*/
 #header {
   display: flex;
   justify-content: space-between;
+  padding: 0px 50px;
   align-items: center;
-  
+  background: #444368;
 }
 
 #header #logo {
   font-size: 25px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #000;
+  font-family: 'Segoe Script', Arial, Helvetica, sans-serif;;
+  color: white;
   text-decoration: none;
   margin-left: 30px;
 }
@@ -24,19 +25,45 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  margin-right: 20px;
+  font-weight: 500;
+  margin-left: 40px;
 }
 #nav-items a:hover{
     color:white;
-    background-color: #000;
+    background-color: #585787;
 }
 
 #nav-items a {
-  color: black;
+  color: white;
+  font-size: 1.1em;
   padding: 35px 20px;
+  text-decoration: none;
+  font-weight: 500;
 }
 
+/*-----Login Button-----*/
+#nav-items .btnLogin {
+  width: 130px;
+  height: 50px;
+  background: #585787;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  margin-left: 40px;
+  margin-right: 50px;
+  transition: .5s;
+}
 
+#nav-items .btnLogin:hover{
+  background: #302f49;
+  color: #fff;
+}
+
+/*-----Display-----*/
 #display {
   display: flex;
   flex-direction: column;
@@ -51,11 +78,10 @@ body {
 }
 
 #display h1 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Segoe Script', Arial, Helvetica, sans-serif;
   font-size: 60px;
   color: white;
   font-weight: bold;
-  
   margin: 0;
 }
 
@@ -66,16 +92,13 @@ body {
   margin: 20px 0;
 }
 
-
-
+/*-----Synopsis-----*/
 #synopsis {
   display: flex;
   justify-content: space-around;
   align-items: center;
   padding: 40px 80px;
   background-color: #6e6e6e;
-  
-  
 }
 
 #synopsis #description {
@@ -96,7 +119,7 @@ body {
 }
 
 #synopsis #description #description-heading {
-  font-size: 25px;
+  font-size: 30px;
   color: black;
   margin: 10px 0;
 }
@@ -108,31 +131,52 @@ body {
   text-align: center;
 }
 
+/*-----Get Started-----*/
 #get-started {
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   padding: 40px 80px;
   border-top: 2px solid #eeeeee;
 }
 
-
-
 #get-started-text h2 {
-text-align: center;
+  text-align: center;
   font-size: 30px;
   color: #333333;
   margin: 0;
 }
 
 #get-started-text p {
-    text-align: center;
+  text-align: center;
   font-size: 18px;
   color: #585858;
   margin: 10px 0;
 }
 
+/*-----Register Button-----*/
+#get-started .btnSignup {
+  display: block;
+  margin: 20px auto 0;
+  width: 130px;
+  height: 50px;
+  background: #585787;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  color: #fff;
+  font-weight: 500;
+  transition: .5s;
+}
 
+#get-started .btnSignup:hover{
+  background: #444368;
+  color: #fff;
+}
+
+/*-----Footer-----*/
 #footer {
   display: flex;
   justify-content: space-between;
@@ -145,6 +189,7 @@ text-align: center;
   color: white;
 }
 
+/*-----Bottom Links-----*/
 #bottom-links {
   display: flex;
   justify-content: space-around;
