@@ -53,10 +53,23 @@ app.use(methodOverride('_m'))
 
 
 //=====================
-// INDEX/MAIN PAGE
+// HOME PAGE (DEFAULT)
 //=====================
 
-app.get('/', checkAuthentication, getData, (req, res) => {
+app.get('/', getData, (req, res) => {
+
+	res.render(home_page.ejs, {
+
+		name: req.user.fname
+
+	})
+})
+
+//=====================
+// OLD INDEX/MAIN PAGE
+//=====================
+
+app.get('/oldindex', checkAuthentication, getData, (req, res) => {
 
 	res.render('index.ejs', {
 
