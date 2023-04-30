@@ -160,9 +160,11 @@ app.post('/login', passport.authenticate('local', {
 // LOGOUT
 //=====================
 
-app.delete('/logout', (req, res) => {
-	req.logout()
-	res.redirect('/login')
+app.delete('/logout', (req, res, next) => {
+	req.logout( (err) => {
+		if(err) { return next(err) }
+		res.redirect('login')
+	})
 })
 
 //=====================
