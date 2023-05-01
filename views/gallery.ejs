@@ -15,13 +15,28 @@
             <div id="left_column">
                 <h1 id="album_name">Albums</h1>
                 <nav>
-                    <button id="create_album_button"><h3>Create album</h3></button>
+    
+                    <% if(albumNameExists == true) { %>
+                        <label for="albummessage" class="alert">Album exists</label>
+                    <% } %>
+
+                    <form action="/createalbum" method="post">
+
+                        <label for="albumname">Album name:</label><br>
+                        <input for="albumname" id="albumname" name="albumname"><br>
+                        <button type="submit" id="create_album_button"><h3>Create album</h3></button>
+                    
+                    </form>
+
                     <div id="album_list">
-                        <!--TODO: Inject albums with links here-->
-                        <a href="/test" class="album_list_item"><p>My album</p></a>
-                        <a href="/test" class="album_list_item">
-                            <p>My album2</p>
-                        </a>
+
+                        <% if(gallery_data && gallery_data.length) { %>
+                            <% gallery_data.forEach( (album) => { %>
+                                <%- `<a href="#" class="album_list_item"><p>${album.albumname}</p></a>` %>
+                            <% }) %>
+                        <% } %>
+
+
                     </div>
                 </nav>
             </div>
@@ -32,13 +47,27 @@
                         <label for="message" class="alert">Upload succesfull</label>
                     <% } %>
 
-                    <form enctype="multi-part/form-data" method="post">
+                    <% if (gallery_data && gallery_data.length) { %>
 
-                        <input id="input" type="file" class="file" multiple="multiple" accept="image/png, image/jpg, image/jpeg, image/gif">
+                        <%- '<form action="/upload" enctype="multipart/form-data" method="post">' %>
 
-                        <button type="submit">Upload</button>
+                        <%- '<input id="input-images" name="input-images" type="file" class="file" multiple="multiple" accept="image/png, image/jpg, image/jpeg, image/gif" required>' %>
 
-                    </form>
+                        <%- '<div id="album-select"> Album:' %>
+                            <%- '<select id="album" name="album">' %>            
+                            <% gallery_data.forEach( function(album) { %>
+                                <%- '<option value="' + album.albumname + '">' + album.albumname + '</option>' %>
+                            <% }) %>
+                            <%- '</select>' %>
+                        </div>
+
+                        <%- '<button type="submit">Upload</button>' %>
+
+                        <%- '</form>' %>
+                    
+                    <% } else { %>
+                        <%- '<p>You don\'t have any albums yet, make one first!</p>' %>
+                    <% } %>
 
                     <form id="queue">
 
@@ -52,6 +81,9 @@
             </div>
         </div>    
         <script src="scripts/script_test.js"></script>
+        <script>
+            var gallery_data = <%= JSON.stringify(gallery_data) %>
+        </script>
     </body>
     <footer>
         <ul>

@@ -56,7 +56,7 @@ app.use(methodOverride('_m'))
 // HOME PAGE (DEFAULT)
 //=====================
 
-app.get('/', getData, (req, res) => {
+app.get('/', (req, res) => {
 	res.render('home_page.ejs')
 })
 
@@ -64,14 +64,14 @@ app.get('/', getData, (req, res) => {
 // OLD INDEX/MAIN PAGE
 //=====================
 
-app.get('/debug', checkAuthentication, getData, (req, res) => {
+app.get('/debug', checkAuthentication, getUserData, getAllUserData, getGalleryData, (req, res) => {
 
 	res.render('debug.ejs', {
 
-		name: req.user.fname,
-		id: req.user.id,
-		content: res.data,
-		content_user: req.user
+		gallery_data: res.gallery_data,
+		user_data: res.user_data,
+		all_user_data: res.all_user_data,
+		user: req.user
 
 	})
 })
@@ -84,10 +84,8 @@ app.get('/account', checkAuthentication, getUserData, (req, res) => {
 
 	res.render('account_page.ejs', {
 
-		fname: req.user.fname,
-		lname: req.user.lname,
-		username: res.data,
-		id: req.user.id
+		user: req.user,
+		user_data: res.user_data
 
 	})
 
@@ -105,34 +103,92 @@ app.get('/gallery', checkAuthentication, getGalleryData, (req, res) => {
 	const fileTypeError = req.fileValidatorError
 	req.fileValidatorError = null
 
-	res.render('gallery_roughdraft.ejs', {
+	const albumNameExists = req.app.albumNameExists
+	req.app.albumNameExists = null
+
+	res.render('gallery.ejs', {
 		name: req.user.fname,
-		content: res.gallery_data,
+		gallery_data: res.gallery_data,
 		uploadStatus : uploadStatus,
-		fileTypeError : fileTypeError
+		fileTypeError : fileTypeError,
+		albumNameExists : albumNameExists
 	})
 
 })
 
-//=====================
-// test upload
-//=====================
+//======================================================
+// Uploads images and saves them to the specified album
+//======================================================
 
-app.post('/upload', checkAuthentication, (req, res) => {
+app.post('/upload', checkAuthentication, getGalleryData, (req, res) => {
 
-	upload(req, res, (err) => {	
+	let gallery_data = res.gallery_data
+	let userid = req.user.id
+
+	upload(req, res, async (err) => {	
 		
 		if(err) {
-			console.log('big oopsies')
-			res.redirect('/test')
+			console.log('> Image upload has failed')
+			res.redirect('/gallery')
+		}
+		
+		let upload_album
+		let new_images = []
+		let old_images = []
+
+		if(req.body.album) {
+			upload_album = req.body.album
 		}
 
-		console.log(req.files)
+		req.files.forEach( async (file) => {
+			new_images.push(file.filename)
+			await db.send(`INSERT INTO Images VALUES ('${file.filename}','${userid}')`)
+		})
+
+		gallery_data.forEach( (album) => {
+
+			if(album.albumname === upload_album) {
+				old_images = album.albumcontent.images
+				return
+			}
+
+		})
+
+		new_images = new_images.concat(old_images)
+
+		query_images = '["' + new_images.join('","') + '"]'
+
+		await db.send(`UPDATE Album SET albumcontent='{"images":${query_images}}' WHERE albumname='${upload_album}'`)
 
 		req.app.locals.uploadStatus = true
 
-		res.redirect('/test')
+		res.redirect('/gallery')
 	})
+})
+
+app.post('/createalbum', checkAuthentication, getGalleryData, async (req, res) => {
+
+	try {
+
+		let checkalbumname = await db.send(`SELECT 1 FROM Album WHERE albumname='${req.body.albumname}' LIMIT 1`)
+
+		if (checkalbumname && checkalbumname.length) {
+			
+			req.app.albumNameExists = true
+			res.redirect('/gallery')
+		
+		} else {
+		
+			await db.send(`INSERT INTO Album VALUES ('${Date.now() + "_" + req.user.id}', '${req.body.albumname}', '{"images":[]}', '${req.user.id}')`)
+			
+			console.log('> New album created')
+
+			res.redirect('/gallery')
+		}
+
+	} catch (err) {
+		console.log("you should not see this message. if you do, weep.")
+	}
 })
 
 
@@ -227,19 +283,19 @@ async function checkAuthentication(req, res, next) {
 }
 
 
-// Function to perform a query. Could make this a generic function but meh.
+// Function to get all user data
 
-async function getData(req, res, next) {
+async function getAllUserData(req, res, next) {
 
 	let data
 	try {
 		data = await db.send(`select * from Users`)
 	} catch (err) { return res.status(500) }
-	res.data = data
+	res.all_user_data = data
 	next()
 }
 
-// Function to get user data
+// Function to get the user's data
 
 async function getUserData(req, res, next) {
 
@@ -247,7 +303,7 @@ async function getUserData(req, res, next) {
 	try {
 		data = await db.send(`select * from Users where (id='${req.user.id}')`)
 	} catch (err) { return res.status(500) }
-	res.data = data
+	res.user_data = data
 	next()
 }
 
@@ -255,12 +311,11 @@ async function getUserData(req, res, next) {
 
 async function getGalleryData(req, res, next) {
 
-	let gallery_data
+	let data
 	try {
-		gallery_data = await db.send(`SELECT * FROM Album WHERE albumowner='${req.user.id}';`)
+		data = await db.send(`SELECT * FROM Album WHERE albumowner='${req.user.id}'`)
 	} catch (err) { return res.status(500) }
-	res.gallery_data = gallery_data
-
+	res.gallery_data = data
 	next()
 }
 

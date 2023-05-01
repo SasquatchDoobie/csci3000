@@ -31,9 +31,9 @@
         <p>This provides basic information about the users account as well as personal.</p>
       </div>
       <div id="info">
-        <p>Name:  <%= fname + " " + lname %></p>
-        <p>Username:  <% username[0].username %></p>
-        <p>Date Joined: <%= new Date(parseInt(id)) %></p>
+        <p>Name:  <%= user.fname + " " + user.lname %></p>
+        <p>Username:  <%= user.username %></p>
+        <p>Date Joined: <%= new Date(parseInt(user.id)) %></p>
       </div>
       
       

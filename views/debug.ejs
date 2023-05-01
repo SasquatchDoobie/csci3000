@@ -1,5 +1,40 @@
-<h1>Welcome! Your name is <%= name %></h1>
+<h1>Welcome! Your name is:</h1>
+<p><%= user.fname + " " + user.lname %></p>
 
-<h2> Your user data is: <br><%=JSON.stringify(content)%></h2>
+<h2>Your user is:</h2>
+<%= JSON.stringify(user) %>
 
+<h2>Your user ID is:</h2>
+<%= user.id %>
 
+<h2>Your username is:</h2>
+<%= user.username %>
+
+<h2>Your user data is:</h2>
+<%= JSON.stringify(user_data[0]) %>
+
+<h2>Your albums are:</h2>
+<%= JSON.stringify(gallery_data) %>
+
+<h2>Your albums (parsed) are:</h2>
+<% if(gallery_data && gallery_data.length) { %>
+  <% gallery_data.forEach( (album) => { %>
+    <%- JSON.stringify(album) + "<br><br>"%>
+  <% }) %>
+<% } %>
+
+<h2>Your gallery images are: </h2>
+
+<% if(gallery_data && gallery_data.length) { %>
+  <% gallery_data.forEach( (album) => { %>
+    <%- "Album ID:" + album.albumid + "<br>" %>
+    <%- "Album Name:" + album.albumname + "<br>" %>
+    <%- "Album images:" + "<br>" %>
+    <% let counter = 1 %>
+    <% album.albumcontent.images.forEach( (image) => { %>
+      <%- counter + ": " + image + "<br>" %>
+      <%- "<image src='/images/" + image + "' alt='" + counter + "'> <br>" %>
+      <% counter += 1 %>
+    <% }) %>
+  <% }) %>
+<% } %>
