@@ -21,17 +21,17 @@
         <div class="form-box login">
             <h2>Login</h2>
             <form action="/login" method="POST" id="login-form" novalidate>
-                <div class="input-box">
+                <div class="input-box<% if (messages.error) { %> error<% } %>">
                     <span class="icon"></span>
                     <input type="text" id="login-username" name="username" required>
                     <label for="username">Username</label>
-                    <small>Error Message</small>
+                    <small><% if (messages.error) { %> Username or password incorrect<% } %></small>
                 </div>
-                <div class="input-box">
+                <div class="input-box<% if (messages.error) { %> error<% } %>">
                     <span class="icon"></span>
                     <input type="password" id="login-password" name="password" required>
                     <label for="password">Password</label>
-                    <small>Error Message</small>
+                    <small><% if (messages.error) { %> Username or password incorrect<% } %></small>
                 </div>
                 <div class="remember">
                     <label><input type="checkbox">Remember me</label>
