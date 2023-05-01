@@ -36,6 +36,23 @@ body {
     padding: 40px;
 }
 
+.wrapper .icon-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    font-size: 2em;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 1;
+}
+
+
 .wrapper .form-box.login {
     transition: transform .18s ease;
     transform: translateX(0);
