@@ -13,11 +13,25 @@ background: #444368;
 }
 
 #header #logo {
-font-size: 25px;
-font-family: 'Segoe Script', Arial, Helvetica, sans-serif;;
-color: white;
-text-decoration: none;
-margin-left: 30px;
+  display: inline-flex;
+  align-items: center;
+  height: 50px;
+  margin-left: 30px;
+  font-size: 25px;
+  font-family: 'Segoe Script', Arial, Helvetica, sans-serif;
+  color: white;
+  text-decoration: none;
+}
+
+#header #logo::before {
+  content: "";
+  background-image: url('/images/white-camera.png');
+  background-repeat: no-repeat;
+  background-size: contain;
+  height: 100%;
+  width: 50px;
+  margin-right: 5px;
+  margin-top: 5px;
 }
 
 #nav-items {
