@@ -19,7 +19,7 @@
               </form>
             </nav>
         </header>
-        
+
         <h1 id="gallery_name">Main Gallery</h1>
         <div id="column_container">
             <div id="left_column">
@@ -27,10 +27,10 @@
                 <nav id="album-items">
                     
                     <!--Album Form-->
-                    <form action="/createalbum" method="post" id="album-form" onsubmit="return validateForm()">
+                    <form action="/createalbum" method="post" id="album-form">
                         
                         <div class="album-input<% if (albumNameExists == true) { %> error<% } %>">
-                            <label for="albumname" class="alert"><% if (albumNameExists == true) { %> Album already exists<% } %></label><br>
+                            <p for="albumname" class="alert"><% if (albumNameExists == true) { %> Album already exists<% } %></p><br>
                             <label for="albumname">Album name:</label><br>
                             <input type="text" id="albumname" name="albumname"><br>
                             <span></span><br>
