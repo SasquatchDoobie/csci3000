@@ -1,3 +1,9 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+
 p {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 16px;
@@ -6,6 +12,80 @@ h2 {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 32 px;
     
+}
+
+/*-----Nav Bar-----*/
+#header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 50px;
+    align-items: center;
+    background: #444368;
+}
+  
+#header #logo {
+    display: inline-flex;
+    align-items: center;
+    height: 50px;
+    margin-left: 30px;
+    font-size: 25px;
+    font-family: 'Segoe Script', Arial, Helvetica, sans-serif;
+    color: white;
+    text-decoration: none;
+}
+  
+#header #logo::before {
+    content: "";
+    background-image: url('/images/white-camera.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    height: 100%;
+    width: 50px;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+  
+#nav-items {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 500;
+    margin-left: 40px;
+}
+
+#nav-items a:hover{
+      color:white;
+      background-color: #585787;
+}
+  
+#nav-items a {
+    color: white;
+    font-size: 1.1em;
+    padding: 35px 20px;
+    text-decoration: none;
+    font-weight: 500;
+}
+  
+/*-----Login Button-----*/
+#nav-items .btnSignout {
+    width: 130px;
+    height: 50px;
+    background: #585787;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #fff;
+    font-weight: 500;
+    margin-left: 40px;
+    margin-right: 50px;
+    transition: .5s;
+}
+  
+#nav-items .btnSignout:hover{
+    background: #302f49;
+    color: #fff;
 }
 
 #file_upload {
@@ -43,12 +123,6 @@ h2 {
     display:block;
 }
 
-nav  {
-    display:flex;
-    flex: 0 1 20%;
-    flex-direction: column;
-    
-}
 footer ul{
     display: flex;
    flex-direction: row;
@@ -57,27 +131,40 @@ footer ul{
    padding: 0;
    white-space: nowrap;
 }
-
-#album_name {
-    margin-top: 0;
-}
-
 #column_container {
     display: flex;
     margin-top: 80px;
 }
 
+/*-----Album List-----*/
 #left_column {
     width: 20vw;
     text-align: center;
 }
 
-#right_column {
-    padding: 40px;
-    width: 80vw;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
+#album_name {
+    margin-top: 0;
 }
+
+#album-items  {
+    display:flex;
+    flex: 0 1 20%;
+    flex-direction: column;
+    
+}
+
+/*-----Error Messages-----*/
+.album-input .alert {
+    visibility: hidden;
+    display: block;
+    margin-bottom: -15px;
+}
+
+.album-input.error .alert {
+    color: #E53C2B;
+    visibility: visible;
+}
+
 
 #create_album_button {
     width: 70%;
@@ -95,4 +182,12 @@ footer ul{
 .album_list_item {
     text-decoration: none;
     color: black;
+}
+
+/*-----Photo Gallery-----*/
+#right_column {
+    padding: 40px;
+    width: 80vw;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
 }

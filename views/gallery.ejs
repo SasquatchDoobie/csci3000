@@ -8,24 +8,35 @@
     </head>
 
     <body>
-        <header>
-            <h1 id="gallery_name">Main Gallery</h1>
+        <header id="header">
+            <a href="/" id="logo">PhotoGal</a>
+            <nav id="nav-items">
+              <a href="/">Home</a>
+              <a href="/gallery">Gallery</a>
+              <a href="/account">Account</a>
+              <form action='/logout?_m=DELETE' method=POST>
+                <button type="submit" class="btnSignout">Sign Out</button>
+              </form>
+            </nav>
         </header>
+        
+        <h1 id="gallery_name">Main Gallery</h1>
         <div id="column_container">
             <div id="left_column">
                 <h1 id="album_name">Albums</h1>
-                <nav>
-    
-                    <% if(albumNameExists == true) { %>
-                        <label for="albummessage" class="alert">Album exists</label>
-                    <% } %>
-
-                    <form action="/createalbum" method="post">
-
-                        <label for="albumname">Album name:</label><br>
-                        <input for="albumname" id="albumname" name="albumname"><br>
-                        <button type="submit" id="create_album_button"><h3>Create album</h3></button>
+                <nav id="album-items">
                     
+                    <!--Album Form-->
+                    <form action="/createalbum" method="post" id="album-form" onsubmit="return validateForm()">
+                        
+                        <div class="album-input<% if (albumNameExists == true) { %> error<% } %>">
+                            <label for="albumname" class="alert"><% if (albumNameExists == true) { %> Album already exists<% } %></label><br>
+                            <label for="albumname">Album name:</label><br>
+                            <input type="text" id="albumname" name="albumname"><br>
+                            <span></span><br>
+                        </div>
+                        <button type="submit" id="create_album_button"><h3>Create album</h3></button>
+
                     </form>
 
                     <div id="album_list">
@@ -82,7 +93,7 @@
         </div>    
         <script src="scripts/script_test.js"></script>
         <script>
-            var gallery_data = <%- JSON.stringify(gallery_data) %>
+            var gallery_data = '<%- JSON.stringify(gallery_data) %>'
         </script>
     </body>
     <footer>
