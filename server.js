@@ -57,7 +57,7 @@ app.use(methodOverride('_m'))
 //=====================
 
 app.get('/', (req, res) => {
-	res.render('home_page.ejs')
+	res.render('home_page.ejs', { user: req.user })
 })
 
 //=====================
