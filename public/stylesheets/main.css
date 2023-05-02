@@ -5,11 +5,11 @@ body {
 }
 
 p {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
     font-size: 16px;
 }
 h2 {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', Helvetica, Arial, sans-serif;
     font-size: 32 px;
     
 }
@@ -66,7 +66,7 @@ h2 {
     font-weight: 500;
 }
   
-/*-----Signout Button-----*/
+/*-----Login Button-----*/
 #nav-items .btnSignout {
     width: 130px;
     height: 50px;
@@ -88,6 +88,152 @@ h2 {
     color: #fff;
 }
 
+/*-----Containers-----*/
+#gallery_name{
+    display: flex;
+    justify-content: center;
+}
+
+#column_container {
+    display: flex;
+    margin-top: 80px;
+}
+
+/*-----Album Error Messages-----*/
+.album-input .alert {
+    visibility: visible;
+    display: block;
+    margin-top: -5px;
+    margin-bottom: -15px;
+}
+
+.album-input.error .alert {
+    color: #E53C2B;
+    visibility: visible;
+}
+
+/*-----{Album List}-----*/
+#left_column {
+    width: 20vw;
+    text-align: center;
+}
+  
+#album_name {
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: -5px;
+}
+  
+  #album-items {
+    display: flex;
+    flex: 0 1 20%;
+    flex-direction: column;
+  }
+  
+  /*-----Create Album Button-----*/
+  #create_album_button {
+    width: 75%;
+    align-self: center;
+    border-radius: 16px;
+    background-color: #355C7D;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease; 
+    margin-top: -5px;
+    margin-bottom: 10px; /* removed margin-bottom to bring button closer */
+  }
+  
+  #create_album_button:hover {
+    background-color: #2B4E6F;
+  }
+  
+/*-----Album Input-----*/
+.album-input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: -10px; 
+}
+    
+.album-input label {
+    margin-top: 5px;
+    margin-bottom: -15px; 
+    font-weight: bold;
+    text-align: center;
+}
+    
+.album-input input {
+    width: 70%;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+  
+#album_list {
+    width: 70%;
+    min-height: 300px;
+    max-height: 300px;
+    overflow-y: auto;
+    text-align: left;
+    align-self: center;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+.album_list_item {
+    display: block;
+    text-decoration: none;
+    color: black;
+    padding: 1px 6px;
+    margin: 1px 0;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    line-height: 0.9;
+}
+  
+.album_list_item:hover {
+    background-color: #f5f5f5;
+}
+
+/*-----Album Scroll Bar-----*/
+#album_list::-webkit-scrollbar {
+    width: 8px;
+}
+  
+#album_list::-webkit-scrollbar-track {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+}
+  
+#album_list::-webkit-scrollbar-thumb {
+    background-color: #aaa;
+    border-radius: 5px;
+}
+  
+#album_list::-webkit-scrollbar-thumb:hover {
+    background-color: #888;
+}
+  
+  
+  
+/*-----{Photo Gallery}-----*/
+#right_column {
+    padding: 40px;
+    width: 80vw;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+}
+
 #file_upload {
     display:grid;
     grid-template-columns: auto auto auto auto;
@@ -97,15 +243,6 @@ h2 {
     flex-wrap: wrap;
 
 }
-#gallery_name{
-    display: flex;
-    justify-content: center;
-}
-#account_name{
-    display:flex;
-    justify-content: right;
-}
-
 
 #image_display,#image_display1,#image_display2,#image_display3,#image_display4,#image_display5,#image_input6 {
     width: 375px;
@@ -130,64 +267,4 @@ footer ul{
    list-style: none;
    padding: 0;
    white-space: nowrap;
-}
-#column_container {
-    display: flex;
-    margin-top: 80px;
-}
-
-/*-----Album List-----*/
-#left_column {
-    width: 20vw;
-    text-align: center;
-}
-
-#album_name {
-    margin-top: 0;
-}
-
-#album-items  {
-    display:flex;
-    flex: 0 1 20%;
-    flex-direction: column;
-    
-}
-
-/*-----Error Messages-----*/
-.album-input .alert {
-    visibility: hidden;
-    display: block;
-    margin-bottom: -15px;
-}
-
-.album-input.error .alert {
-    color: #E53C2B;
-    visibility: visible;
-}
-
-
-#create_album_button {
-    width: 70%;
-    align-self: center;
-    border-radius: 16px;
-    background-color: lightblue;
-}
-
-#album_list {
-    width: 70%;
-    text-align: left;
-    align-self: center;
-}
-
-.album_list_item {
-    text-decoration: none;
-    color: black;
-}
-
-/*-----Photo Gallery-----*/
-#right_column {
-    padding: 40px;
-    width: 80vw;
-    border-top: 2px solid black;
-    border-left: 2px solid black;
 }
