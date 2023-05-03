@@ -17,6 +17,7 @@ const passportInit = require('./passport.js')
 const methodOverride = require('method-override')
 const path = require('path')
 const {upload} = require('./multer.js')
+const fs = require('fs')
 
 passportInit(
 	passport, 
@@ -172,6 +173,10 @@ app.post('/upload', checkAuthentication, getGalleryData, (req, res) => {
 	})
 })
 
+//=========================================
+// This allows the user to create an album
+//=========================================
+
 app.post('/createalbum', checkAuthentication, getGalleryData, async (req, res) => {
 
 	try {
@@ -198,6 +203,11 @@ app.post('/createalbum', checkAuthentication, getGalleryData, async (req, res) =
 	}
 })
 
+app.delete('/deleteimages' ,(req, res, next) => {
+
+	console.log(req.body.deletedimages)
+
+})
 
 //=====================
 // LOGIN
@@ -260,14 +270,6 @@ app.post('/registration', async (req, res) => {
 		res.redirect('/login')
 
 	}})
-
-//MOVE TO DATABSE :P
-const content = [
-
-	{ username: 'test', title: 'Post 1'},
-	{ username: 'bobduncan01', title: 'bobduncan01\'s content'}
-
-]
 
 let users = []
 

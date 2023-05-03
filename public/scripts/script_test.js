@@ -79,7 +79,7 @@ function drawAlbum(activeAlbumName) {
                 let counter = 1
                 let photosHtml = ""
                 album.albumcontent.images.forEach( (image) => {
-                    photosHtml += `<img src='/images/${image}' alt='${counter}'> <br>`
+                    photosHtml += `<img class='gallery-image' id='gallery-image-${counter}' src='/images/${image}' alt='${counter}'> <br>`
                     counter += 1
                 })
                 document.getElementById('photos').innerHTML = photosHtml
@@ -96,6 +96,22 @@ function drawAlbum(activeAlbumName) {
 
 let aaaa = albumListItems[0]
 aaaa.click()
+
+//==========================================
+// Allows the user to select gallery images 
+//==========================================
+
+const galleryListItems = document.querySelectorAll('.gallery-image');
+
+galleryListItems.forEach(galleryListItem => {
+    galleryListItem.addEventListener('click', () => {
+        if(galleryListItem.classList.contains('selected-image')) {
+            galleryListItem.classList.remove('selected-image')
+        } else { 
+            galleryListItem.classList.add('selected-image') 
+        }
+    });
+});
 
 
 //==========================================================

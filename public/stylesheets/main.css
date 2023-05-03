@@ -209,6 +209,11 @@ h2 {
     background-color: rgb(234, 240, 247);
 }
 
+.selected-image {
+    outline: rgb(20, 20, 20) solid 3px;
+    opacity: 0.8;
+}
+
 /*-----Album Scroll Bar-----*/
 #album_list::-webkit-scrollbar {
     width: 8px;
