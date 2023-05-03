@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Gallery Rough Draft</title>
+        <title>PhotoGal - Gallery</title>
         <link rel="stylesheet" href="stylesheets/main.css">
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
     </head>
@@ -25,8 +25,7 @@
             <div id="left_column">
                 <h1 id="album_name">Albums</h1>
                 <nav id="album-items">
-                    
-                    <!--Album Form-->
+
                     <form action="/createalbum" method="post" id="album-form">
                         
                         <div class="album-input<% if (albumNameExists == true) { %> error<% } %>">
@@ -37,6 +36,7 @@
                         <button type="submit" id="create_album_button"><h3>Create album</h3></button>
 
                     </form>
+                    
 
                     <div id="album_list">
 
@@ -53,30 +53,32 @@
             <div id="right_column">
                 <section id="file_upload">
 
-                    <% if(uploadStatus == true) { %>
-                        <label for="message" class="alert">Upload succesfull</label>
-                    <% } %>
-
                     <% if (gallery_data && gallery_data.length) { %>
 
                         <%- '<form action="/upload" enctype="multipart/form-data" method="post">' %>
+                            
+                            <%- '<label for="input-images" class="image-upload">Choose Images</label>' %>
+                            <%- '<input id="input-images" name="input-images" type="file" class="file" multiple="multiple" accept="image/png, image/jpg, image/jpeg, image/gif" required>' %>
 
-                        <%- '<input id="input-images" name="input-images" type="file" class="file" multiple="multiple" accept="image/png, image/jpg, image/jpeg, image/gif" required>' %>
+                            <%- '<div id="album-select">' %>
+                                <%- '<span class="album-select-label"> Choose Album:</span>' %>
+                                <%- '<select id="album" name="album" class="album-select">' %>            
+                                <% gallery_data.forEach( function(album) { %>
+                                    <%- '<option value="' + album.albumname + '">' + album.albumname + '</option>' %>
+                                <% }) %>
+                                <%- '</select>' %>
+                                </div>
 
-                        <%- '<div id="album-select"> Album:' %>
-                            <%- '<select id="album" name="album">' %>            
-                            <% gallery_data.forEach( function(album) { %>
-                                <%- '<option value="' + album.albumname + '">' + album.albumname + '</option>' %>
-                            <% }) %>
-                            <%- '</select>' %>
-                        </div>
-
-                        <%- '<button type="submit">Upload</button>' %>
+                            <%- '<button type="submit">Upload</button>' %>
 
                         <%- '</form>' %>
                     
                     <% } else { %>
-                        <%- '<p>You don\'t have any albums yet, make one first!</p>' %>
+                        <%- '<label for="message" class="alert">You don\'t have any albums yet, make one first!</label>' %>
+                    <% } %>
+
+                    <% if(uploadStatus == true) { %>
+                        <label for="message" class="alert">Upload succesful!</label>
                     <% } %>
 
                     <form id="queue">

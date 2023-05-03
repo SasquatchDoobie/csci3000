@@ -66,7 +66,7 @@ h2 {
     font-weight: 500;
 }
   
-/*-----Login Button-----*/
+/*-----Signout Button-----*/
 #nav-items .btnSignout {
     width: 130px;
     height: 50px;
@@ -84,7 +84,7 @@ h2 {
 }
   
 #nav-items .btnSignout:hover{
-    background: #302f49;
+    background: #706FA2;
     color: #fff;
 }
 
@@ -132,23 +132,23 @@ h2 {
     flex-direction: column;
   }
   
-  /*-----Create Album Button-----*/
-  #create_album_button {
-    width: 75%;
+/*-----Create Album Button-----*/
+#create_album_button {
+    width: 90%;
     align-self: center;
     border-radius: 16px;
-    background-color: #355C7D;
+    background-color: #585787;
     color: #fff;
     border: none;
     cursor: pointer;
     transition: all 0.3s ease; 
     margin-top: -5px;
-    margin-bottom: 10px; /* removed margin-bottom to bring button closer */
-  }
+    margin-bottom: 10px; 
+}
   
-  #create_album_button:hover {
-    background-color: #2B4E6F;
-  }
+#create_album_button:hover {
+    background-color: #706FA2;
+}
   
 /*-----Album Input-----*/
 .album-input {
@@ -167,7 +167,7 @@ h2 {
 }
     
 .album-input input {
-    width: 70%;
+    width: 85%;
     padding: 5px;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -177,7 +177,7 @@ h2 {
 }
   
 #album_list {
-    width: 70%;
+    width: 85%;
     min-height: 300px;
     max-height: 300px;
     overflow-y: auto;
@@ -228,21 +228,144 @@ h2 {
   
 /*-----{Photo Gallery}-----*/
 #right_column {
-    padding: 40px;
+    padding: 5px;
     width: 80vw;
     border-top: 2px solid black;
     border-left: 2px solid black;
 }
-
+  
 #file_upload {
-    display:grid;
-    grid-template-columns: auto auto auto auto;
-    gap: 25px;
-    justify-content: center;
-    flex: 0 1 80%;
-    flex-wrap: wrap;
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    height: 50px;
 }
+  
+#file_upload form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+  
+#file_upload label {
+    font-size: 14px;
+    font-weight: bold;
+}
+  
+#file_upload select {
+    font-size: 14px;
+}
+
+/*-----Styling for Nav Bar Color-----*/
+#file_upload {
+    background-color: #444368;
+}
+.image-upload,
+.album-select,
+#file_upload button[type="submit"],
+#queue button[type="submit"] {
+    background-color: #585787;
+}
+
+.image-upload:hover,
+.album-select:hover,
+#file_upload button[type="submit"]:hover,
+#queue button[type="submit"]:hover {
+    background-color: #706FA2;
+}
+
+/*-----Upload Alert messages-----*/
+.alert {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+}
+  
+/*-----Image Upload-----*/
+#input-images {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+}
+  
+.image-upload {
+    border: none; 
+    display: inline-block;
+    padding: 10px 20px; 
+    cursor: pointer;
+    color: #fff;
+    border-radius: 5px;
+}
+  
+/*-----Album Select Dropdown-----*/
+.album-select-label {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    margin-left: 10px;
+}
+
+.album-select {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    position: relative;
+}
+  
+.album-select::after {
+    content: "\25BC";
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    font-size: 20px;
+}
+  
+.album-select option {
+    background-color: #fff;
+    color: #444368;
+}
+  
+/*-----Upload Button-----*/
+#file_upload button[type="submit"] {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+  
+/*-----Remove Button-----*/
+#queue {
+    display: flex;
+    align-items: center;
+}
+  
+#queue button[type="submit"] {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+  
+  
+  
+  
 
 #image_display,#image_display1,#image_display2,#image_display3,#image_display4,#image_display5,#image_input6 {
     width: 375px;
@@ -252,8 +375,6 @@ h2 {
     background-size:cover;
     display: flex;
     justify-content: center;
-    
-    
 
 }
 #image_input2{
