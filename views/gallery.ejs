@@ -23,32 +23,31 @@
         <h1 id="gallery_name">Main Gallery</h1>
         <div id="column_container">
             <div id="left_column">
-                <h1 id="album_name">Albums</h1>
-                <nav id="album-items">
+                <div id="album-background">
+                    <h1 id="album_name">Albums</h1>
+                    <nav id="album-items">
 
-                    <form action="/createalbum" method="post" id="album-form">
+                        <form action="/createalbum" method="post" id="album-form">
+                            
+                            <div class="album-input<% if (albumNameExists == true) { %> error<% } %>">
+                                <p for="albumname" class="alert"><% if (albumNameExists == true) { %> Album already exists<% } %></p><br>
+                                <label for="albumname">Enter new album name:</label><br>
+                                <input type="text" id="albumname" name="albumname"><br>
+                            </div>
+                            <button type="submit" id="create_album_button"><h3>Create album</h3></button>
+
+                        </form>
                         
-                        <div class="album-input<% if (albumNameExists == true) { %> error<% } %>">
-                            <p for="albumname" class="alert"><% if (albumNameExists == true) { %> Album already exists<% } %></p><br>
-                            <label for="albumname">Enter new album name:</label><br>
-                            <input type="text" id="albumname" name="albumname"><br>
+
+                        <div id="album_list">
+                            <% if(gallery_data && gallery_data.length) { %>
+                                <% gallery_data.forEach( (album) => { %>
+                                    <%- `<a href="#" class="album_list_item"><p>${album.albumname}</p></a>` %>
+                                <% }) %>
+                            <% } %>
                         </div>
-                        <button type="submit" id="create_album_button"><h3>Create album</h3></button>
-
-                    </form>
-                    
-
-                    <div id="album_list">
-
-                        <% if(gallery_data && gallery_data.length) { %>
-                            <% gallery_data.forEach( (album) => { %>
-                                <%- `<a href="#" class="album_list_item"><p>${album.albumname}</p></a>` %>
-                            <% }) %>
-                        <% } %>
-
-
-                    </div>
-                </nav>
+                    </nav>
+                </div>
             </div>
             <div id="right_column">
                 <section id="file_upload">
@@ -89,6 +88,26 @@
 
                     </form>
                 
+                </section>
+                <section class="photo-gallery">
+                    <div class="photo-container">
+                        <div class="photos">
+                            <% if(gallery_data && gallery_data.length) { %>
+                                <% gallery_data.forEach( (album) => { %>
+                                  <% let counter = 1 %>
+                                  <% const galleryData = JSON.parse(album.albumcontent) %>
+                                  <% if(galleryData.images && galleryData.images.length) { %>
+                                    <% galleryData.images.forEach( (image) => { %>
+                                      <%- "<image src='/images/" + image + "' alt='" + counter + "'>" %>
+                                      <% counter += 1 %>
+                                    <% }) %>
+                                  <% } else { %>
+                                    <%- "No images found." %>
+                                  <% } %>
+                                <% }) %>
+                              <% } %>
+                        </div>
+                    </div>
                 </section>
             </div>
         </div>    

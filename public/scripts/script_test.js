@@ -50,6 +50,22 @@ function setSuccessFor(input) {
     albumInput.classList.remove('error');
 }
 
+//========================
+// Clickable Albums
+//========================
+const albumListItems = document.querySelectorAll('.album_list_item');
+
+albumListItems.forEach(albumListItem => {
+  albumListItem.addEventListener('click', () => {
+    // Removes the active class from all the album list items
+    albumListItems.forEach(item => item.classList.remove('active-album'));
+    
+    // Adds the active class to the clicked album list item
+    albumListItem.classList.add('active-album');
+  });
+});
+
+
 //==========================================================
 // Form validation needs to be above for this for it to work
 //==========================================================
