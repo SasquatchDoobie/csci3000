@@ -56,14 +56,46 @@ function setSuccessFor(input) {
 const albumListItems = document.querySelectorAll('.album_list_item');
 
 albumListItems.forEach(albumListItem => {
-  albumListItem.addEventListener('click', () => {
-    // Removes the active class from all the album list items
-    albumListItems.forEach(item => item.classList.remove('active-album'));
-    
-    // Adds the active class to the clicked album list item
-    albumListItem.classList.add('active-album');
-  });
+    albumListItem.addEventListener('click', () => {
+        // Removes the active class from all the album list items
+        albumListItems.forEach(item => item.classList.remove('active-album'));
+
+        // Adds the active class to the clicked album list item
+        albumListItem.classList.add('active-album');
+
+        // bodged it
+        let activeAlbumElement = albumListItem.firstElementChild.innerHTML
+        drawAlbum(activeAlbumElement)
+    });
 });
+
+function drawAlbum(activeAlbumName) {
+
+    if(gallery_data && gallery_data.length) {
+
+        gallery_data.forEach( (album) => {
+
+            if (album.albumname == activeAlbumName) {
+                let counter = 1
+                let photosHtml = ""
+                album.albumcontent.images.forEach( (image) => {
+                    photosHtml += `<img src='/images/${image}' alt='${counter}'> <br>`
+                    counter += 1
+                })
+                document.getElementById('photos').innerHTML = photosHtml
+            }
+        })
+    }
+
+
+}
+
+//=========================================================
+// Sets the first album to be the default one on page load
+//=========================================================
+
+let aaaa = albumListItems[0]
+aaaa.click()
 
 
 //==========================================================

@@ -1,0 +1,14 @@
+<% if(gallery_data && gallery_data.length) { %>
+                                <% gallery_data.forEach( (album) => { %>
+                                  <% let counter = 1 %>
+                                  <% const galleryData = JSON.parse(album.albumcontent) %>
+                                  <% if(galleryData.images && galleryData.images.length) { %>
+                                    <% galleryData.images.forEach( (image) => { %>
+                                      <%- "<image src='/images/" + image + "' alt='" + counter + "'>" %>
+                                      <% counter += 1 %>
+                                    <% }) %>
+                                  <% } else { %>
+                                    <%- "No images found." %>
+                                  <% } %>
+                                <% }) %>
+                              <% } %>

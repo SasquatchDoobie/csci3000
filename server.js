@@ -52,6 +52,12 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(methodOverride('_m'))
 
 
+// WHY IS IT BORKEN
+app.get('/broken', (req, res) => {
+	res.render('whyisitbroken.ejs', { user: req.user })
+})
+
+
 //=====================
 // HOME PAGE (DEFAULT)
 //=====================
@@ -169,7 +175,8 @@ app.post('/upload', checkAuthentication, getGalleryData, (req, res) => {
 app.post('/createalbum', checkAuthentication, getGalleryData, async (req, res) => {
 
 	try {
-
+		
+		//If this query returns any result, we know that the album name the user requested already exists in the DB. This yeets them back to the gallery page with an error message
 		let checkalbumname = await db.send(`SELECT 1 FROM Album WHERE albumname='${req.body.albumname}' LIMIT 1`)
 
 		if (checkalbumname && checkalbumname.length) {

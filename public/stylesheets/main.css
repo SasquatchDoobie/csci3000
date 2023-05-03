@@ -205,6 +205,10 @@ h2 {
     background-color: #f5f5f5;
 }
 
+.active-album {
+    background-color: rgb(234, 240, 247);
+}
+
 /*-----Album Scroll Bar-----*/
 #album_list::-webkit-scrollbar {
     width: 8px;
