@@ -337,6 +337,10 @@ h2 {
     background-color: #fff;
     color: #444368;
 }
+
+.album-select:focus {
+    outline: none; 
+}
   
 /*-----Upload Button-----*/
 #file_upload button[type="submit"] {

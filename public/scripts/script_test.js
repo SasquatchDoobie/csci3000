@@ -53,7 +53,7 @@ function setSuccessFor(input) {
 }
 
 //========================
-// Clickable Albums
+// Selectable Albums
 //========================
 const albumListItems = document.querySelectorAll('.album_list_item');
 
