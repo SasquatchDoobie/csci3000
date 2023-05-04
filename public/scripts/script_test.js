@@ -3,6 +3,8 @@
 //========================
 const form = document.getElementById('album-form');
 const albumName = document.getElementById('albumname');
+let selectedImages = [];
+let removeAlbum = "";
 
 form.addEventListener('submit', (e) => {
     const albumNameValue = albumName.value.trim();
@@ -66,6 +68,7 @@ albumListItems.forEach(albumListItem => {
         // bodged it
         let activeAlbumElement = albumListItem.firstElementChild.innerHTML
         drawAlbum(activeAlbumElement)
+        removeAlbum = activeAlbumElement
     });
 });
 
@@ -78,11 +81,14 @@ function drawAlbum(activeAlbumName) {
             if (album.albumname == activeAlbumName) {
                 let counter = 1
                 let photosHtml = ""
-                album.albumcontent.images.forEach( (image) => {
+                let album_content = album.albumcontent
+                album_content.images.forEach( (image) => {
                     photosHtml += `<img class='gallery-image' id='gallery-image-${counter}' src='/images/${image}' alt='${counter}'> <br>`
                     counter += 1
                 })
                 document.getElementById('photos').innerHTML = photosHtml
+                selectImages()
+                selectedImages = []
             }
         })
     }
@@ -101,24 +107,61 @@ aaaa.click()
 // Allows the user to select gallery images 
 //==========================================
 
-const galleryListItems = document.querySelectorAll('.gallery-image');
+const imgreg = new RegExp("(?<=images\/).*$")
 
-galleryListItems.forEach(galleryListItem => {
-    galleryListItem.addEventListener('click', () => {
-        if(galleryListItem.classList.contains('selected-image')) {
-            galleryListItem.classList.remove('selected-image')
-        } else { 
-            galleryListItem.classList.add('selected-image') 
-        }
+function selectImages() {
+
+    const galleryListItems = document.querySelectorAll('.gallery-image');
+
+    galleryListItems.forEach(galleryListItem => {
+        galleryListItem.addEventListener('click', () => {
+            if(galleryListItem.classList.contains('selected-image')) {
+                galleryListItem.classList.remove('selected-image')
+                
+                let index = selectedImages.indexOf(imgreg.exec(galleryListItem.src)[0])
+                if (index > -1) {
+                    selectedImages.splice(index, 1)
+                }
+                console.log(selectedImages)
+
+            } else { 
+                galleryListItem.classList.add('selected-image') 
+                selectedImages.push(imgreg.exec(galleryListItem.src)[0])
+                console.log(selectedImages)
+            }
+
+        });
     });
-});
 
+}
+
+//============================================
+// Function to send delete request for images
+//============================================
+
+
+async function submitForDeletion() {
+
+    const response = await fetch("deleteimages", {
+        method : "PUT",
+        headers : {
+            "Accept" : "application/json, text/plain, */*",
+            "Content-type" : "application/json"
+        },
+        body : JSON.stringify({album:removeAlbum, images:selectedImages})
+    })
+
+    window.location.replace(`${response.url}`) 
+
+}
+
+deleteButton = document.getElementById('deletebutton')
+deleteButton.addEventListener('click', () => { submitForDeletion() })
 
 //==========================================================
 // Form validation needs to be above for this for it to work
 //==========================================================
 let queuedcontent = []
-
 
 let queue = document.getElementById("#queue")
 let input = document.getElementById("input")

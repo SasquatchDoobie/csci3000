@@ -203,9 +203,19 @@ app.post('/createalbum', checkAuthentication, getGalleryData, async (req, res) =
 	}
 })
 
-app.delete('/deleteimages' ,(req, res, next) => {
+//===============
+// Delete images
+//===============
 
-	console.log(req.body.deletedimages)
+app.put('/deleteimages', getGalleryData, async (req, res, next) => {
+	
+
+	console.log(req.body)
+
+	let imagearray = req.body.images
+	
+	
+	res.redirect('/gallery')
 
 })
 
