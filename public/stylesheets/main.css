@@ -209,11 +209,6 @@ h2 {
     background-color: rgb(234, 240, 247);
 }
 
-.selected-image {
-    outline: rgb(20, 20, 20) solid 3px;
-    opacity: 0.8;
-}
-
 /*-----Album Scroll Bar-----*/
 #album_list::-webkit-scrollbar {
     width: 8px;
@@ -276,14 +271,14 @@ h2 {
 .image-upload,
 .album-select,
 #file_upload button[type="submit"],
-#queue button[type="submit"] {
+#deletebutton {
     background-color: #585787;
 }
 
 .image-upload:hover,
 .album-select:hover,
 #file_upload button[type="submit"]:hover,
-#queue button[type="submit"]:hover {
+#deletebutton:hover {
     background-color: #706FA2;
 }
 
@@ -361,7 +356,7 @@ h2 {
     align-items: center;
 }
   
-#queue button[type="submit"] {
+#deletebutton {
     font-size: 14px;
     font-weight: bold;
     color: #fff;
@@ -396,11 +391,12 @@ h2 {
 .photos {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
 }
   
 .photos img {
     width: 30%;
+    margin-right: 54px;
     margin-bottom: 10px;
 }  
 
@@ -423,6 +419,14 @@ h2 {
     background-color: #888;
 }
 
+/*-----Selected imaged-----*/
+.selected-image {
+    outline: rgb(20, 20, 20) solid 3px;
+    box-shadow: 0px 0px 5px 5px rgba(20, 20, 20, 0.5);
+    opacity: 0.8;
+}
+
+/*-----Changes image layout based on window size-----*/
 @media screen and (min-width: 768px) and (max-width: 1526px) {   
     .photos img {
         width: 48%;
@@ -436,20 +440,6 @@ h2 {
       width: 100%;
       margin-bottom: 10px;
     }
-}
-
-#image_display,#image_display1,#image_display2,#image_display3,#image_display4,#image_display5,#image_input6 {
-    width: 375px;
-    height: 211px;
-    border: 1px solid black;
-    background-position: center;
-    background-size:cover;
-    display: flex;
-    justify-content: center;
-
-}
-#image_input2{
-    display:block;
 }
 
 footer ul{
