@@ -155,9 +155,6 @@ async function submitForDeletion() {
 
 }
 
-deleteButton = document.getElementById('deletebutton')
-deleteButton.addEventListener('click', () => { submitForDeletion() })
-
 //==========================================================
 // Form validation needs to be above for this for it to work
 //==========================================================

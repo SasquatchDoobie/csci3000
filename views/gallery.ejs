@@ -3,8 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>PhotoGal - Gallery</title>
-        <link rel="stylesheet" href="stylesheets/main.css">
+        <link rel="stylesheet" id="stylesheet" href="stylesheets/main.css">
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+        <script src="scripts/script_gallery.js"></script>
     </head>
 
     <body>
@@ -80,7 +81,7 @@
                         <label for="message" class="alert">Upload succesful!</label>
                     <% } %>
 
-                    <form action="/deleteimages" id="queue">
+                    <form action="javascript:submitForDeletion()" id="queue">
 
                         <div class="queue">
                             <button type="submit">Remove</button>
@@ -101,7 +102,7 @@
             var gallery_data = <%- JSON.stringify(gallery_data) %>
     </script>
     <script src="scripts/script_test.js"></script>
-
+    
     </body>
     <footer>
         <ul>

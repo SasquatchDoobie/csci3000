@@ -209,12 +209,47 @@ app.post('/createalbum', checkAuthentication, getGalleryData, async (req, res) =
 
 app.put('/deleteimages', getGalleryData, async (req, res, next) => {
 	
+	let images_to_delete = req.body.images
 
-	console.log(req.body)
+	let gallery_data = res.gallery_data
 
-	let imagearray = req.body.images
-	
-	
+	gallery_data.forEach( async (album) => {
+
+		if(album.albumname == req.body.album) {
+
+			let new_images = album.albumcontent.images
+			let counter = 0
+
+			req.body.images.forEach( async (image) => {
+			
+				if(new_images.includes(image)) {
+					
+					let index = new_images.indexOf(image)
+					if (index > -1) {
+						new_images.splice(index, 1)
+					}
+
+				}
+
+				query_images = '["' + new_images.join('","') + '"]'
+
+				await db.send(`UPDATE Album SET albumcontent='{"images":${query_images}}' WHERE albumname='${req.body.album}'`)
+
+				images_to_delete.forEach( async (image) => {
+					await db.send(`DELETE FROM Images WHERE imagepath='${image}'`)
+					fs.rm(`./public/images/${image}`, { recursive: true, force:true }, (err) => {
+						if(err) {
+							console.log("Error deleting file. Good job guys") 
+							return
+						}
+						console.log(`> Deleted: ${image}`)
+					})
+				})
+
+			})
+		}
+	})
+
 	res.redirect('/gallery')
 
 })
