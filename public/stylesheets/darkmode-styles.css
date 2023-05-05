@@ -9,6 +9,7 @@ body {
     margin: 0;
     box-sizing: border-box;
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    background: #282a2e;
 }
   
 /*-----Nav Bar-----*/
@@ -17,7 +18,7 @@ body {
     justify-content: space-between;
     padding: 0px 50px;
     align-items: center;
-    background: #444368;
+    background: #222427;
 }
   
 #header #logo {
@@ -27,7 +28,7 @@ body {
     margin-left: 30px;
     font-size: 25px;
     font-family: 'Segoe Script', Arial, Helvetica, sans-serif;
-    color: white;
+    color: #dee0e3;
     text-decoration: none;
 }
   
@@ -49,13 +50,14 @@ body {
     font-weight: 500;
     margin-left: 40px;
 }
+
 #nav-items a:hover{
       color:white;
-      background-color: #706FA2;
+      background-color: #3A3D42;
 }
   
 #nav-items a {
-    color: white;
+    color: #dee0e3;
     font-size: 1.1em;
     padding: 35px 20px;
     text-decoration: none;
@@ -66,7 +68,7 @@ body {
 #nav-items .btnLogin, .btnSignout {
     width: 130px;
     height: 50px;
-    background: #585787;
+    background: #512da8;
     border: none;
     outline: none;
     border-radius: 6px;
@@ -80,7 +82,7 @@ body {
 }
   
 #nav-items .btnLogin:hover, .btnSignout:hover {
-    background: #706FA2;
+    background: #673DCB;
     color: #fff;
 }
   
@@ -101,14 +103,14 @@ body {
 #display h1 {
     font-family: 'Segoe Script', Arial, Helvetica, sans-serif;
     font-size: 60px;
-    color: white;
+    color: #F4F5F6;
     font-weight: bold;
     margin: 0;
 }
   
 #display p {
     font-size: 18px;
-    color: rgb(190, 189, 189);
+    color: #dee0e3;
     text-transform: uppercase;
     margin: 20px 0;
 }
@@ -119,7 +121,7 @@ body {
     justify-content: space-around;
     align-items: center;
     padding: 40px 80px;
-    background-color: #6e6e6e;
+    background-color: #393d43;
 }
   
 #synopsis #description {
@@ -143,13 +145,13 @@ body {
   
 #synopsis #description #description-heading {
     font-size: 30px;
-    color: black;
+    color: #e9e4ec;
     margin: 10px 0;
 }
   
 #synopsis #description #description-text {
     font-size: 20px;
-    color: black;
+    color: #bababa;
     margin: 10px 0;
     text-align: center;
 }
@@ -160,20 +162,20 @@ body {
     justify-content: center;
     align-items: center;
     padding: 40px 80px;
-    border-top: 2px solid #eeeeee;
+    border-top: 2px solid #4d5259;
 }
   
 #get-started-text h2 {
     text-align: center;
     font-size: 30px;
-    color: #333333;
+    color: #9b9b9b;
     margin: 0;
 }
   
 #get-started-text p {
     text-align: center;
     font-size: 18px;
-    color: #585858;
+    color: #dddddd;
     margin: 10px 0;
 }
   
@@ -183,7 +185,7 @@ body {
     margin: 20px auto 0;
     width: 130px;
     height: 50px;
-    background: #585787;
+    background: #512da8;
     border: none;
     outline: none;
     border-radius: 6px;
@@ -195,7 +197,7 @@ body {
 }
   
 #get-started .btnSignup:hover{
-    background: #706FA2;
+    background: #673DCB;
     color: #fff;
 }
   
@@ -204,12 +206,12 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #302f49;
+    background-color: #222427;
     padding: 5px 60px;
 }
   
 #footer #copy {
-    color: white;
+    color: #dee0e3;
 }
   
 /*-----Bottom Links-----*/
@@ -231,7 +233,7 @@ body {
   
 #bottom-links #links span {
     font-size: 20px;
-    color: #fff;
+    color: #dee0e3;
     text-transform: uppercase;
     margin: 10px 0;
 }
@@ -250,7 +252,7 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.3) 100%), url("https://cdn.shopify.com/s/files/1/0330/1705/products/fa_print_2_1000x.jpg?v=1615579535");
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://cdn.shopify.com/s/files/1/0330/1705/products/fa_print_2_1000x.jpg?v=1615579535");
 }
 
 /*-----Login Box-----*/
@@ -259,7 +261,7 @@ body {
     width: 400px;
     height: 440px;
     border-radius: 20px;
-    background: #F5F5F5;
+    background: #393d43;
     box-shadow: 0 0 30px rgba(0, 0, 0, .5);
     display: flex;
     justify-content: center;
@@ -284,7 +286,7 @@ body {
     width: 45px;
     height: 45px;
     font-size: 2em;
-    color: black;
+    color: #dee0e3;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -295,7 +297,6 @@ body {
 
 
 .wrapper-login .form-box.login {
-    box-sizing: border-box;
     transition: transform .18s ease;
     transform: translateX(0);
 }
@@ -306,7 +307,6 @@ body {
 }
 
 .wrapper-login .form-box.register {
-    box-sizing: border-box;
     position: absolute;
     transition: none;
     transform: translateX(400px);
@@ -320,17 +320,16 @@ body {
 .form-box h2 {
     font-size: 40px;
     font-family: 'Segoe Script', Arial, Helvetica, sans-serif;
-    color: black;
+    color: #F4F5F6;
     text-align: center; 
 }
 
 /*-----Input Box-----*/
 .input-box {
-    box-sizing: border-box;
     position: relative;
     width: 100%;
     height: 50px;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #4d5259;
     margin: 30px 0;
     transition: .5s;
     box-sizing: border-box;
@@ -342,7 +341,7 @@ body {
     left: 5px;
     transform: translateY(-50%);
     font-size: 1em;
-    color: black;
+    color: #e9e4ec;
     font-weight: 500;
     pointer-events: none;
     transition: .5s;
@@ -359,8 +358,8 @@ body {
     border: none;
     outline: none;
     font-size: 1em;
-    color: black;
-    background: #F5F5F5;
+    color: #dee0e3;
+    background: #282a2e;
     border-radius: 3px;
     font-weight: 600;
     padding: 0 35px 0 5px;
@@ -384,7 +383,7 @@ body {
 }
 
 .input-box.error small {
-    color: #E53C2B;
+    color: #e64232;
     visibility: visible;
 }
 
@@ -407,7 +406,7 @@ body {
 .btnLogin, .btnRegister {
     width: 100%;
     height: 45px;
-    background: #706FA2;
+    background: #512da8;
     border: none;
     outline: none;
     border-radius: 6px;
@@ -418,21 +417,21 @@ body {
 }
 
 .btnLogin:hover, .btnRegister:hover {
-    background: #585787;
+    background: #673DCB;
     color: white;
 }
 
 /*-----Login/Register Link-----*/
 .login-register {
     font-size: .9em;
-    color: black;
+    color: #dee0e3;
     text-align: center;
     font-weight: 500;
     margin: 25px 0 10px;
 }
 
 .login-register p a {
-    color: black;
+    color: #dee0e3;
     text-decoration: none;
     font-weight: 600;
 }
@@ -451,7 +450,7 @@ body {
   
 /*-----Header-----*/
 #header-color{
-    background-color: #585787;
+    background-color: #393d43;
     width: 100%;
     height:35px;
     margin:auto;  
@@ -463,11 +462,11 @@ body {
     text-transform: uppercase;
     margin: 20px;
     font-size: 2.5em;
-    color: black;
+    color: #F4F5F6;
 }
     
 #line-border{
-    background-color: #585787;
+    background-color: #393d43;
     height:9px;
     width: 100%;
     margin:auto;
@@ -481,14 +480,14 @@ body {
 }
   
 #description-account p {
-    color: black;
+    color: #dee0e3;
     margin: 18px 0px;
     display: inline-block;
     vertical-align: middle;
 }
       
 #icon {
-    color: black;
+    color: #dee0e3;
     height: 25px;
     width: 25px;
     vertical-align: middle;
@@ -499,8 +498,8 @@ body {
 /*-----Account Info-----*/
 #info {
     font-family: 'Roboto', Helvetica, Arial, sans-serif;
-    border: 1px solid #dee0e3;
-    background: #F6F5F4;
+    border: 1px solid #4d5259;
+    background: #393d43;
     border-radius: 5px;
     box-shadow: 0 0 30px rgba(0, 0, 0, .2);
     margin: 0 auto;
@@ -515,7 +514,7 @@ body {
     margin: 30px;
     position: relative;
     padding-top: 15px;
-    color: black;
+    color: #dee0e3;
 }
     
     
@@ -535,7 +534,7 @@ body {
     
     
 #info strong {
-    color: black;
+    color: #dee0e3;
     display: inline-block;
     width: 250px;
     font-size: 1.4em;
@@ -555,7 +554,7 @@ body {
     padding: 8px 16px;
     border-radius: 30px;
     border: none;
-    background-color: #706FA2;
+    background-color: #512da8;
     color: #fff;
     font-size: 1.2em;
     cursor: pointer;
@@ -565,7 +564,7 @@ body {
   
 #dark-mode:hover {
     transform: translateX(-5%) scale(1.1);
-    background-color: #585787;
+    background-color: #673DCB;
 }
   
 #dark-mode:focus {

@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8" />
     <title>PhotoGal - Account</title>
-    <link rel="stylesheet" href="/stylesheets/styles.css">
+    <link rel="stylesheet" id="stylesheet" href="/stylesheets/styles.css">
+    <script src="scripts/script.js"></script>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 </head>
 <body id="account-body">
@@ -32,6 +33,7 @@
           <p><strong>Name:</strong> <span><%= user.fname + " " + user.lname %></span></p>
           <p><strong>Username:</strong>  <span><%= user.username %></span></p>
           <p><strong>Date Joined:</strong> <span><%= new Date(parseInt(user.id)).toLocaleDateString('en-US', {weekday: 'short', month: 'short', day: 'numeric', year: 'numeric'}).replace(/,/g,'') %></span></p>
+          <button id="dark-mode" onclick="toggleDarkMode()">Toggle Darkmode</button>
         </div>
        
         <footer id="footer">
