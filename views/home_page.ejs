@@ -44,11 +44,19 @@
               </div>
             </div>
             <div id="get-started">
+              <% if (!user) { %>
               <div id="get-started-text">
                 <h2>GET STARTED</h2>
                 <p>Get started today by creating an account and begin saving your photos!</p>
               </div>
-              <button class="btnSignup" onclick="window.location.href='/login'">Signup</button>
+                <button class="btnSignup" onclick="window.location.href='/login'">Signup</button>
+              <% } else { %>
+                <div id="get-started-text">
+                  <h2>GET STARTED</h2>
+                  <p>Get started today by visiting the gallery and begin saving your photos!</p>
+                </div>
+                  <button class="btnSignup" onclick="window.location.href='/gallery'">Gallery</button>
+              <% } %>
             </div>
           </main>
           
