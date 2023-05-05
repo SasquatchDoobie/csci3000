@@ -1,7 +1,7 @@
 //========================
 // Animation
 //========================
-const wrapper = document.querySelector('.wrapper');
+const wrapper = document.querySelector('.wrapper-login');
 const loginLink = document.querySelector('.login-link');
 const registerLink = document.querySelector('.register-link');
 const iconClose = document.querySelector('.icon-close');
