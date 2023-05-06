@@ -3,9 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>PhotoGal - Gallery</title>
-        <link rel="stylesheet" id="stylesheet" href="stylesheets/main.css">
+        <link rel="stylesheet" id="stylesheet" href="stylesheets/styles.css">
         <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-        <script src="scripts/script_gallery.js"></script>
+        <script src="scripts/script.js"></script>
     </head>
 
     <body>
@@ -21,7 +21,9 @@
             </nav>
         </header>
 
+        <div id="header-color"></div>
         <h1 id="gallery_name">Main Gallery</h1>
+        <div id="line-border"></div>
         <div id="column_container">
             <div id="left_column">
                 <div id="album-background">
@@ -98,18 +100,14 @@
                 </section>
             </div>
         </div>
-    <script>
-            var gallery_data = <%- JSON.stringify(gallery_data) %>
-    </script>
-    <script src="scripts/script_test.js"></script>
-    
-    </body>
-    <footer>
-        <ul>
-            <li><a href="rough_draft.ejs.html">1</a></li>
-            <li><a href="rough_draft_2.html">2</a></li>
-            <li><a href="rough_draft_3.html">3</a></li>
-        </ul>
-    </footer>
 
+        <footer id="footer-gallery">
+          <div id="copy">&copy; 2023 Web Wizards Inc.</div>
+        </footer>
+
+        <script>
+                var gallery_data = <%- JSON.stringify(gallery_data) %>
+        </script>
+        <script src="scripts/script_test.js"></script>
+    </body> 
 </html>

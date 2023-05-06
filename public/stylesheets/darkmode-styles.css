@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.cdnfonts.com/css/segoe-script');
+
 * {
     padding: 0;
-    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
 }
 
 /*-----------------Home Page-----------------*/
 body {
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: 'Monsterrat', Helvetica, Arial, sans-serif;
     background: #282a2e;
 }
   
@@ -93,7 +96,7 @@ body {
     align-items: center;
     width: 100%;
     height: 500px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.5) 100%), url("https://www.techjunkie.com/wp-content/uploads/2019/06/How-to-Make-a-Photo-Collage-With-Music-for-Facebook.jpg");
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://www.techjunkie.com/wp-content/uploads/2019/06/How-to-Make-a-Photo-Collage-With-Music-for-Facebook.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -570,16 +573,21 @@ body {
     outline: none;
 }
 
+/*-----------------Gallery Page----------------*/
 /*-----Containers-----*/
 #gallery_name{
-    display: flex;
-    justify-content: center;
-    color: white;
+    font-family: 'Segoe Script', Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 20px;
+    font-size: 2.5em;
+    color: #F4F5F6;
 }
 
 #column_container {
     display: flex;
-    margin-top: 80px;
+    margin-top: 10px;
+    margin-bottom: 1px;
 }
 
 /*-----Album Error Messages-----*/
@@ -591,7 +599,7 @@ body {
 }
 
 .album-input.error .alert {
-    color: #E53C2B;
+    color: #e64232;
     visibility: visible;
 }
 
@@ -602,6 +610,8 @@ body {
 }
   
 #album_name {
+    font-family: 'Segoe Script', Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
     font-size: 36px;
     font-weight: bold;
     text-align: center;
@@ -628,10 +638,11 @@ body {
     transition: all 0.3s ease; 
     margin-top: -5px;
     margin-bottom: 10px; 
+    transition: .5s;
 }
   
 #create_album_button:hover {
-    background-color: #706FA2;
+    background-color: #673DCB;
 }
   
 /*-----Album Input-----*/
@@ -715,11 +726,9 @@ body {
     background-color: #888;
 }
   
-  
-  
 /*-----{Photo Gallery}-----*/
 #right_column {
-    padding: 5px;
+    padding: 10px 5px;
     width: 80vw;
     border-top: 2px solid #3f3e40;
     border-left: 2px solid #3f3e40;
@@ -752,20 +761,21 @@ body {
 
 /*-----Styling for Nav Bar Color-----*/
 #file_upload {
-    background-color: #393d43;
+    background-color: #222427;
 }
 .image-upload,
 .album-select,
 #file_upload button[type="submit"],
 #deletebutton {
     background-color: #512da8;
+    transition: .5s;
 }
 
 .image-upload:hover,
 .album-select:hover,
 #file_upload button[type="submit"]:hover,
 #deletebutton:hover {
-    background-color: #706FA2;
+    background-color: #673DCB;
 }
 
 /*-----Upload Alert messages-----*/
@@ -820,8 +830,8 @@ body {
 }
   
 .album-select option {
-    background-color: #fff;
-    color: #444368;
+    background-color: #393d43;
+    color: #fff;
 }
 
 .album-select:focus {
@@ -914,6 +924,20 @@ body {
     outline: white solid 3px;
     box-shadow: 0px 0px 5px 5px rgba(20, 20, 20, 0.5);
     opacity: 0.8;
+}
+
+/*-----Footer Gallery-----*/
+#footer-gallery {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #222427;
+    padding: 46px;
+}
+
+  
+#footer-gallery #copy {
+    color: #dee0e3;
 }
 
 /*-----Changes image layout based on window size-----*/
